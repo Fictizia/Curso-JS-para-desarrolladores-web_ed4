@@ -11,6 +11,13 @@ Además, a lo largo del curso se irá desarrollando una aplicación web que sirv
 
 [JavaScript para desarrolladores web](http://fictizia.com/formacion/curso_javascript)
 
+Sobre el Curso
+=================
+* Horario: Martes y Jueves de 19h a 22h
+* Fechas: 10/11/2015 - 22/11/2015
+* [Resumen Clases](temario/readme.md)
+* [Recursos Adiccionales](recursos/readme.md)
+
 Conceptos Básicos
 =================
 * Objects
