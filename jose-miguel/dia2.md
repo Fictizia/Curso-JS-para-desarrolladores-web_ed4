@@ -121,9 +121,9 @@
           trenesFuncionando++;
         }
 
-    }
+    };
 
-    trenes(8, 12)
+    trenes(8, 12);
 ```
 
 - Respuesta esperada (consola):
