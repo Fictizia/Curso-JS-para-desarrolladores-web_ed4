@@ -116,9 +116,8 @@
           console.info('El tren numero '+ i +' esta funcionando');
         }
 
-        for (trenesFuncionando; trenesFuncionando < totalTrenes; i++) {
-          console.warn('El tren numero '+ i +' esta parado');
-          trenesFuncionando++;
+        for (trenesParados = trenesFuncionando+1; trenesParados <= totalTrenes; trenesParados++) {
+          console.warn('El tren numero '+ trenesParados +' esta parado');
         }
 
     };
