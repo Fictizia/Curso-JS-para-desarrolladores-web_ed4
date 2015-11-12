@@ -42,10 +42,10 @@
 
 ```javascript
     var trenActual = 0;
-while (trenActual <= 8){
+    while (trenActual <= 8){
 	console.log("El tren número " + trenActual + " está funcionando");
 	trenActual++;
-}
+    }
 ```
 
 
@@ -53,10 +53,9 @@ while (trenActual <= 8){
 
 ```javascript
     var trenActual = 0;
-do {
+    do {
 	console.log("El tren número " + trenActual + " está funcionando");
-	trenActual++;
-}	while (trenActual <= 8)
+	trenActual++;}	while (trenActual <= 8)
 ```
 
 
