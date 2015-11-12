@@ -1,339 +1,5 @@
 # Clase 2
 
-### Reintroducción a JS
-
-**Modo Estricto**
-> El modo estricto hace varios cambios en la semántica normal de JavaScript. Primero, modo estricto elimina algunos errores silenciosos de JavaScript cambiando a que lance los errores. Segundo, modo estricto corrige errores que hacen que sea difícil para los motores de JavaScript para realizar optimizaciones: código de modo estricto a veces se puede hacer para correr más rápido que el código idéntico que no es estricto. Tercero, el modo estricto prohíbe sintaxis que es probable que sea definida en futuras versiones de ECMAScript.
-> - [Mozilla](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Modo_estricto)
-
-- [Compatibilidad](http://caniuse.com/#feat=use-strict)
-
-En resumen:
-- Detectaremos más errores
-- Mejora la interpretación, lo que aumenta la velocidad de ejecucción.
-- Previene que usemos sintaxis de futuras versiones de ECMAScript.
-
-Aplicándolo a todo nuestro código
-
-```javascript
-// ./script.js
-(function() {
-  "use strict";
-
-  // Nuestro código
-
-})();
-```
-
-Aplicándolo solo en parte del código
-```javascript
-// ./script.js
-function estricta(){
-  'use strict';
-  function anidada() {
-      return "Yo también!";
-  }
-  return "Hola! Soy una función en modo estricto!  " + anidada();
-}
-
-function noEstricta() {
-    return "yo no soy una función estricta.";
-}
-```
-
-Algunos ejemplos:
-
-- Error: Usar variables u objetos sin declararlos antes.
-
-```javascript
-    function estricto(){
-        'use strict';
-        pi = 3.14;
-        console.log(pi);
-    }
-```
-
-- Error: Borrar variables, objetos o funciones.
-
-```javascript
-    function estricto(){
-        'use strict';
-        pi = 3.14;
-        delete pi
-    }
-```
-
-- Error: Duplicar parámetros
-
-```javascript
-    function estricto(){
-        'use strict';
-        function x (p1, p1){
-            // código
-        }
-    }
-```
-
-- Error: Al usar carácteres escapados
-
-```javascript
-    function estricto(){
-        'use strict';
-        var x = \010;
-    }
-```
-
-Error: Al usar *writable:false*
-
-```javascript
-    function estricto(){
-        'use strict';
-        var obj = {};
-        Object.defineProperty(obj, "x", {value:0, writable:false});
-        obj.x = 3.14;
-    }
-```
-
-Error: Al usar *with*
-
-```javascript
-    function estricto(){
-        'use strict';
-        with (Math){x = cos(2)};
-    }
-```
-
-Error: Al usar *eval()* por seguridad
-
-```javascript
-    function estricto(){
-        'use strict';
-        eval ("var x = 2");
-        console.log(x);
-    }
-```
-
-
-
-Otras palabras reservadas en modo estricto:
-- implements
-- interface
-- let
-- package
-- private
-- protected
-- public
-- static
-- yield
-
-
-**Variables**
-
-- No se pueden usar espacios
-```javascript
-var con espacios = 1;
-```
-
-- No usar un número delante
-```javascript
-var 1numero = 1;
-```
-
-- Válidos, pero no recomendado
-```javascript
-var con_guiones_bajos = 1;
-var dame$ = 1;
-```
-
-- Válidos, es mejor usar [camelCase](https://es.wikipedia.org/wiki/CamelCase)
-```javascript
-var otraOpcion = 1;
-var opcionCon123123 = 1;
-```
-
-
-**Tipos de variables**
-
-Operador *typeof* y su [especificación](http://www.ecma-international.org/ecma-262/5.1/#sec-11.4.3)
-
-- [x] Undefined
-```javascript
-typeof undefined
-typeof noDefinido
-typeof tampocoCreado
-```
-
-- [x] Object
-```javascript
-typeof null
-typeof [15, 4]
-typeof new Date()
-typeof {a:1}
-```
-
-- [x] Boolean
-```javascript
-typeof false
-typeof true
-typeof Boolean(false)
-```
-
-- [x] Number
-```javascript
-typeof 3
-typeof 3.14
-typeof NaN
-typeof Infinity
-```
-
-- [x] String
-```javascript
-typeof "hola"
-```
-
-- [x] Function
-```javascript
-typeof function(){}
-typeof class C {}
-```
-
-- [x] Symbol (ECMA6)
-
-> Ahora tenemos los símbolos, nuevo tipo de datos que sirve como identificador único para atributos de objetos
-> [EcmaScript 6: Símbolos](http://miguelsr.js.org/2015/08/20/es6-symbols.html) de [Miguel Sánchez](http://miguelsr.js.org/about/)
-
-```javascript
-typeof Symbol()
-typeof Symbol('simbolo')
-```
-
-
-**Matemáticas Básicas**
-```javascript
-var suma = 5 + 4;
-var resta = 10 - 6;
-var multiplicacion = 3 * 3;
-var division = 6 / 2;
-var modulo = 43 % 10;
-
-function calcular (operacion) {
-    console.log(operacion);
-};
-```
-
-**Matemáticas Básicas (Agrupando operaciones)**
-```javascript
-var expresion1 = (3 + 7) * 10;
-var expresion2 = (-56 * 6) - 74 * -25;
-var expresion3 = (3 * 3) + 10 - 12 / 2;
-var expresion4 = 44 + (83 % (33 + 100));
-var expresion5 = -145 + (500 / 10 - 5) + 10 * 10 ;
-
-function calcular (operacion) {
-    console.log(operacion);
-};
-```
-
-
-**While**
-
-- Estructura:
-    ```javascript
-    /*  --while--
-    while (-algo verdadero-) {
-        -ejecutamos este dódigo-
-    };
-    */
-    ```
-
-- Documentación:
-    - [While en w3schools](http://www.w3schools.com/js/js_loop_while.asp)
-    - [While en MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
-
-- Bucle infinito:
-    Este es un error muy común.
-
-    ```javascript
-    while (true) {
-        console.log("Este texto se imprime hasta el infinito...");
-    };
-    ```
-
-- Bucle que no se ejecutará:
-    ```javascript
-    while (false) {
-        console.log("Este texto jamas se imprimirá...");
-    };
-    ```
-
-- Ejemplo:
-    ```javascript
-    var control = 1;
-    while (control <= 10) {
-        console.log(control);
-        control++;
-    };
-    ```
-
-
-**For**
-
-- Estructura:
-    ```javascript
-    /*  --for--
-    for (-inicializando-; -algo verdadero-; -ejecutar al terminar cada bucle-) {
-        -ejecutamos este código-
-    };
-    */
-    ```
-
-- Documentación:
-    - [For en w3schools](http://www.w3schools.com/js/js_loop_for.asp)
-    - [For en MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
-    - [Dominando el rendimiento](https://web.archive.org/web/20141205235948/https://blogs.oracle.com/greimer/entry/best_way_to_code_a)
-
-
-- Ejemplo:
-    ```javascript
-    for (var i = 0; i < 10; i++) {
-        console.log(i);
-    }
-    ```
-
-
-**Do... While**
-
-- Estructura:
-    ```javascript
-    /* --Do...while--
-    do{
-       -Ejecutamos este código-
-    } while (-Algo verdadero-);
-    */
-    ```
-
-- Documentación:
-    - [Do... While en w3schools](http://www.w3schools.com/js/js_loop_while.asp)
-    - [Do... While en MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while)
-
-- Ejemplo:
-    ```javascript
-    var i = 0;
-    do {
-       i++;
-       console.log(i);
-   } while (i < 10);
-    ```
-
-- Al menos se ejecutará una vez, aunque la premisa no sea verdadera.
-
-    ```javascript
-    do{
-       console.warn("me ejecuto")
-    } while (false);
-    ```
-
-
 **Ejercicios**
 > Vamos a crear un sistema de control para el metro. Nuestro objetivo será desarrollar una aplicación para gestionarlo todo. Con este ejercicio nos centraremos en aplicar conceptos básicos de JavaScript
 
@@ -360,7 +26,27 @@ function calcular (operacion) {
 2 - Imprimimos por consola el estado de cada tren en movimiento de manera individualizada (sin bucles).
 
 ```javascript
-    // Tu solución
+    var tren1 = 1;
+    var tren2 = 2;
+    var tren3 = 3;
+    var tren4 = 4;
+    var tren5 = 5;
+    var tren6 = 6;
+    var tren7 = 7;
+    var tren8 = 8;
+
+    var trenFuncionando = function(tren) {
+        return console.log('El tren numero '+ tren +' esta funcionando');
+    }
+
+    trenFuncionando(tren1);
+    trenFuncionando(tren2);
+    trenFuncionando(tren3);
+    trenFuncionando(tren4);
+    trenFuncionando(tren5);
+    trenFuncionando(tren6);
+    trenFuncionando(tren7);
+    trenFuncionando(tren8);
 ```
 
 - Respuesta esperada (consola):
@@ -380,7 +66,11 @@ function calcular (operacion) {
 3 - Refactoriza... usando *while*.
 
 ```javascript
-    // Tu solución
+    var tren = 1;
+    while (tren <= 8) {
+        console.log('El tren numero '+ tren +' esta funcionando');
+        tren++;
+    }
 ```
 
 
@@ -394,7 +84,10 @@ function calcular (operacion) {
 5 - Refactoriza.. usando *for*.
 
 ```javascript
-    // Tu solución
+    for (var i = 1; i <= 8; i++) {
+        console.log('El tren numero '+ i +' esta funcionando');
+        tren++;
+    }
 ```
 
 
