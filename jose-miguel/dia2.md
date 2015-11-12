@@ -86,7 +86,6 @@
 ```javascript
     for (var i = 1; i <= 8; i++) {
         console.log('El tren numero '+ i +' esta funcionando');
-        tren++;
     }
 ```
 
@@ -95,7 +94,7 @@
 6 - Del total de trenes... ¿cuantos tengo parados?
 
 ```javascript
-    // Tu solución
+    ver ejecricio 7
 ```
 
 - Respuesta esperada (consola):
@@ -111,7 +110,20 @@
 7 - Refactoricemos y juntemos los dos bucles dentro de una misma función. Así se imprime por consola tanto los trenes que estan funcionanado como los que estan parados
 
 ```javascript
-    // Tu solución
+    var trenes = function(trenesFuncionando, totalTrenes) {
+
+        for (var i = 1; i <= trenesFuncionando; i++) {
+          console.info('El tren numero '+ i +' esta funcionando');
+        }
+
+        for (trenesFuncionando; trenesFuncionando < totalTrenes; i++) {
+          console.warn('El tren numero '+ i +' esta parado');
+          trenesFuncionando++;
+        }
+
+    }
+
+    trenes(8, 12)
 ```
 
 - Respuesta esperada (consola):
