@@ -343,7 +343,11 @@ function calcular (operacion) {
     El formato de la respuesta es *"x de x funcionando hoy"*.
 
 ```javascript
-    // Tu solución
+    var primerTren = 8;
+    var segundoTren = 12;
+    var trenes = function(primerTren, segundoTren) {
+        return console.log(primerTren +' de ' + segundoTren + ' trenes funcionando hoy.')
+    }
 ```
 
 - Respuesta esperada (consola):
@@ -1266,11 +1270,7 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 13 - Hagamos una lista de pasajeros (min. 6)
 
 ```javascript
-var primerTren = 8;
-var segundoTren = 12;
-var trenes = function(primerTren, segundoTren) {
-    return console.log(primerTren +' de ' + segundoTren + ' trenes funcionando hoy.')
-}
+    // Tu solución
 ```
 
 
