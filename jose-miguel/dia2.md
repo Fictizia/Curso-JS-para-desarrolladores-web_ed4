@@ -10,8 +10,8 @@
 
 ```javascript
     var trenes = function(tren, totalTrenes) {
-        return console.log(tren +' de ' + totalTrenes + ' trenes funcionando hoy.')
-    }
+        return console.log(tren +' de ' + totalTrenes + ' trenes funcionando hoy.');
+    };
 
     trenes(8, 12);
 ```
@@ -28,7 +28,7 @@
 ```javascript
     var trenFuncionando = function(tren) {
         return console.log('El tren numero '+ tren +' esta funcionando');
-    }
+    };
 
     trenFuncionando(1);
     trenFuncionando(2);
