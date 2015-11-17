@@ -114,7 +114,36 @@ trenes(7, 10, 12, 12);
 *NOTA: EL TREN 3 SOLO FUNCIONA LOS SÁBADOS. Es necesario incluir el día de la semana en tu código*
 
 ```javascript
-    // Tu solución
+var trenes = function(trenesFuncionando, trenNocturno, trenRefuerzo, totalTrenes, diaSemana) {
+
+    if (trenesFuncionando === totalTrenes) {
+        console.info('Todos los trenes estan funcionando');
+    } else if (trenesFuncionando === 0) {
+        console.warn('Todos los trenes estan parados');
+    } else {
+      for (var tren = 1; tren <= totalTrenes; tren++) {
+
+        if (tren <= trenesFuncionando && tren != trenNocturno && tren != trenRefuerzo && tren != 3 && diaSemana != 'S') {
+            console.info('El tren numero '+ tren +' esta funcionando');
+        } else if (tren === trenNocturno ) {
+            console.warn('El tren numero '+ tren +' es nocturno');
+        } else if (tren === trenRefuerzo ) {
+            console.info('El tren numero '+ tren +' es de refuerzo');
+        } else if (tren === 3) {
+            if (diaSemana === 's') {
+                console.info('El tren numero '+ tren +' es el tren fiestero');
+            }
+        } else {
+            console.warn('El tren numero '+ tren +' esta parado');
+        }
+
+      }
+
+    }
+
+};
+
+trenes(7, 10, 12, 12, 's');
 ```
 
 
