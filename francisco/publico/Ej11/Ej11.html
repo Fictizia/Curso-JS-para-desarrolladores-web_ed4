@@ -1,0 +1,36 @@
+<!doctype html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <script type="text/javascript">
+                /* Ejercicio 11. 
+                11 - El servicio nocturno se queda un poco corto y necesitamos añadir un nuevo tren de refuerzo. 
+                El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anteriormente.
+                */
+                var totalTrenes = 12;
+                function estadoDetalle (trenesOperativos) {
+                    if(trenesOperativos === 0) {
+                        console.log("Ningún tren está funcionando");
+                    } else if(trenesOperativos === totalTrenes) {
+                        console.log("Todos los trenes funcionan");
+                    } else {
+                        for(var tren = 1; tren <= totalTrenes + 1; tren ++) {
+                            if(tren === 10 || tren == 12) {
+                                console.log("El tren numero "+ tren + " es nocturno");
+                            }
+                            else if(tren <= trenesOperativos) {
+                                console.log("El tren numero "+ tren + " esta funcionando");
+                            } else {
+                                console.log("El tren numero " + tren + " esta parado");
+                            }
+                        }   
+                    }
+                };
+                estadoDetalle(0);
+                estadoDetalle(12);
+                estadoDetalle(9);
+            </script>
+        </head>
+        <body></body>
+    </html>
+</doctype>

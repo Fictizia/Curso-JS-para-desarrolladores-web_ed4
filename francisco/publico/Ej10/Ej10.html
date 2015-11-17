@@ -1,0 +1,35 @@
+<!doctype html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <script type="text/javascript">
+                /* Ejercicio 10. 
+                10 - Refactoricemos - ¿Y si todos los trenes están en las vías funcionando o por el contrario si ninguno de los trenes esta funcionando?.
+                */
+                var totalTrenes = 12;
+                function estadoDetalle (trenesOperativos) {
+                    if(trenesOperativos === 0) {
+                        console.log("Ningún tren está funcionando");
+                    } else if(trenesOperativos === totalTrenes) {
+                        console.log("Todos los trenes funcionan");
+                    } else {
+                        for(var tren = 1; tren <= totalTrenes + 1; tren ++) {
+                            if(tren === 10) {
+                                console.log("El tren numero "+ tren + " es nocturno");
+                            }
+                            else if(tren <= trenesOperativos) {
+                                console.log("El tren numero "+ tren + " esta funcionando");
+                            } else {
+                                console.log("El tren numero " + tren + " esta parado");
+                            }
+                        }   
+                    }
+                };
+                estadoDetalle(0);
+                estadoDetalle(12);
+                estadoDetalle(6);
+            </script>
+        </head>
+        <body></body>
+    </html>
+</doctype>
