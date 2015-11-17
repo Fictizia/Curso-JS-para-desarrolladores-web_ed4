@@ -14,7 +14,7 @@ Además, a lo largo del curso se irá desarrollando una aplicación web que sirv
 Sobre el Curso
 =================
 * Horario: Martes y Jueves de 19h a 22h
-* Fechas: 10/11/2015 - 22/11/2015
+* Fechas: 10/11/2015 - 22/12/2015
 
 Teoría y Recursos
 =================
