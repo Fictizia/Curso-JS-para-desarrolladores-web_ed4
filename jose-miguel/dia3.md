@@ -5,7 +5,21 @@
 8 - **#simplifiquemos!** Quiero solo un bucle para todo.
 
 ```javascript
-    // Tu solución
+var trenes = function(trenesFuncionando, totalTrenes) {
+
+    for (var tren = 1; tren <= totalTrenes; tren++) {
+
+        if (tren <= trenesFuncionando ) {
+            console.info('El tren numero '+ tren +' esta funcionando');
+        } else {
+            console.warn('El tren numero '+ tren +' esta parado');
+        }
+
+    }
+
+};
+
+trenes(8, 12);
 ```
 
 9 - **#compliquemos!** Servicio nocturno en el tren 10.
@@ -13,21 +27,83 @@
 tren 10 se especifique que es nocturno. Independientemente de si esta parado o funcionando.*
 
 ```javascript
-    // Tu solución
+var trenes = function(trenesFuncionando, trenNocturno, totalTrenes) {
+
+    for (var tren = 1; tren <= totalTrenes; tren++) {
+
+        if (tren <= trenesFuncionando && tren != trenNocturno) {
+            console.info('El tren numero '+ tren +' esta funcionando');
+        } else if (tren === trenNocturno ) {
+            console.warn('El tren numero '+ tren +' es nocturno');
+        } else {
+            console.warn('El tren numero '+ tren +' esta parado');
+        }
+
+    }
+
+};
+
+trenes(8, 10, 12);
 ```
 
 
 10 - Refactoricemos - ¿Y si todos los trenes están en las vías funcionando o por el contrario si ninguno de los trenes esta funcionando?.
 
 ```javascript
-    // Tu solución
+var trenes = function(trenesFuncionando, trenNocturno, totalTrenes) {
+
+    if (trenesFuncionando === totalTrenes) {
+      console.info('Todos los trenes estan funcionando');
+    } else if (trenesFuncionando === 0) {
+      console.warn('Todos los trenes estan parados');
+    } else {
+        for (var tren = 1; tren <= totalTrenes; tren++) {
+
+            if (tren <= trenesFuncionando && tren != trenNocturno) {
+                console.info('El tren numero '+ tren +' esta funcionando');
+            } else if (tren === trenNocturno ) {
+                console.warn('El tren numero '+ tren +' es nocturno');
+            } else {
+                console.warn('El tren numero '+ tren +' esta parado');
+            }
+
+        }
+    }
+
+};
+
+trenes(10, 10, 10);
 ```
 
 11 - El servicio nocturno se queda un poco corto y necesitamos añadir un nuevo tren de refuerzo.
 El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anteriormente.
 
 ```javascript
-    // Tu solución
+var trenes = function(trenesFuncionando, trenNocturno, trenRefuerzo, totalTrenes) {
+
+    if (trenesFuncionando === totalTrenes) {
+      console.info('Todos los trenes estan funcionando');
+    } else if (trenesFuncionando === 0) {
+      console.warn('Todos los trenes estan parados');
+    } else {
+        for (var tren = 1; tren <= totalTrenes; tren++) {
+
+            if (tren <= trenesFuncionando && tren != trenNocturno && tren != trenRefuerzo) {
+                console.info('El tren numero '+ tren +' esta funcionando');
+            } else if (tren === trenNocturno ) {
+                console.warn('El tren numero '+ tren +' es nocturno');
+            } else if (tren === trenRefuerzo ) {
+                console.info('El tren numero '+ tren +' es de refuerzo');
+            } else {
+                console.warn('El tren numero '+ tren +' esta parado');
+            }
+
+        }
+    }
+
+};
+
+trenes(7, 10, 12, 12);
 ```
 
 
