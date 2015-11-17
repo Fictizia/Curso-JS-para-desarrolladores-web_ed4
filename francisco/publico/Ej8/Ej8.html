@@ -1,0 +1,24 @@
+<!doctype html>
+    <html>
+        <head>
+            <script type="text/javascript">
+                /* 8 - #simplifiquemos! Quiero solo un bucle para todo. */
+                var trenesOperativos = 8;
+                var totalTrenes = 12;
+                
+                function estadoDetalle () {
+                    for(var tren = 0; tren < totalTrenes; tren ++) {
+                        if(tren < trenesOperativos) {
+                            console.log("El tren numero "+ tren + " esta funcionando");
+                        } else {
+                            console.log("El tren numero " + tren + " esta parado");
+                        }
+                    }
+                };
+                
+                estadoDetalle();
+            </script>
+        </head>
+        <body></body>
+    </html>
+</doctype>
