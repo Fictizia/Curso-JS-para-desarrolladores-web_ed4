@@ -1,0 +1,29 @@
+<!doctype html>
+    <html>
+        <head>
+            <script type="text/javascript">
+                /* Ejercicio 9. 
+                9 - #compliquemos! Servicio nocturno en el tren 10. Nota: Frente al ejercicio anterior, 
+                en este caso queremos que siempre que hablemos del tren 10 se especifique que es nocturno. 
+                Independientemente de si esta parado o funcionando.
+                */
+                var trenesOperativos = 8;
+                var totalTrenes = 12;
+                function estadoDetalle () {
+                    for(var tren = 1; tren <= totalTrenes + 1; tren ++) {
+                        if(tren === 10) {
+                            console.log("El tren numero "+ tren + " es nocturno");
+                        }
+                        else if(tren <= trenesOperativos) {
+                            console.log("El tren numero "+ tren + " esta funcionando");
+                        } else {
+                            console.log("El tren numero " + tren + " esta parado");
+                        }
+                    }
+                };
+                estadoDetalle();
+            </script>
+        </head>
+        <body></body>
+    </html>
+</doctype>
