@@ -203,7 +203,18 @@ function testArreglos () {
 8 - **#simplifiquemos!** Quiero solo un bucle para todo.
 
 ```javascript
-    // Tu solución
+    var trenesOperativos = 8;
+    var totalTrenes = 12;
+
+    function estadoDetalle () {
+    	for(var numeroTren = 1; numeroTren <= totalTrenes; numeroTren++) {
+    		if (numeroTren <= trenesOperativos) {
+    			console.log("El tren número "+numeroTren+" esta funcionando");
+    		}else {
+    			console.log("El tren número "+numeroTren+" esta parado");
+    		};		
+    	};
+    };
 ```
 
 9 - **#compliquemos!** Servicio nocturno en el tren 10.
@@ -211,21 +222,76 @@ function testArreglos () {
 tren 10 se especifique que es nocturno. Independientemente de si esta parado o funcionando.*
 
 ```javascript
-    // Tu solución
+    var trenesOperativos = 8;
+    var totalTrenes = 12;
+
+    function estadoDetalle () {
+    	for(var numeroTren = 1; numeroTren <= totalTrenes; numeroTren++) {
+    		if ((numeroTren <= trenesOperativos) && (numeroTren != 10)) {
+    			console.log("El tren numero "+numeroTren+" esta funcionando");
+    		} else if (numeroTren == 10){
+    			console.info("IMPORTANTE: El tren número "+numeroTren+" es nocturno");
+    		} else {
+    			console.log("El tren numero "+numeroTren+" esta parado");
+    		};		
+    	};
+    };
 ```
 
 
 10 - Refactoricemos - ¿Y si todos los trenes están en las vías funcionando o por el contrario si ninguno de los trenes esta funcionando?.
 
 ```javascript
-    // Tu solución
+    var trenesOperativos = 8;
+    var totalTrenes = 12;
+
+    function estadoDetalle () {
+    	if (trenesOperativos > 0) {
+    		if(trenesOperativos == totalTrenes){
+    			console.log("Todos los trenes estan funcionando");
+    		} else {
+    			for(var numeroTren = 1; numeroTren <= totalTrenes; numeroTren++) {
+    				if ((numeroTren <= trenesOperativos)  && (numeroTren != 10)) {
+    					console.log("El tren numero "+numeroTren+" esta funcionando");
+    				} else if (numeroTren == 10){
+    					console.log("IMPORTANTE: El tren numero "+numeroTren+" es nocturno");
+    				} else {
+    					console.log("El tren numero "+numeroTren+" esta parado");
+    				};		
+    			};
+    		};
+    	} else {
+    		console.log("IMPORTANTE: Ningún tren esta funcionando");
+    	};
+    };
 ```
 
 11 - El servicio nocturno se queda un poco corto y necesitamos añadir un nuevo tren de refuerzo.
 El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anteriormente.
 
 ```javascript
-    // Tu solución
+    var trenesOperativos = 8;
+    var totalTrenes = 12;
+
+    function estadoDetalle () {
+    	if (trenesOperativos > 0) {
+    		if(trenesOperativos == totalTrenes){
+    			console.log("Todos los trenes están funcionando");
+    		} else {
+    			for(var numeroTren = 1; numeroTren <= totalTrenes; numeroTren++) {
+    				if ((numeroTren <= trenesOperativos) && (numeroTren != 10) && (numeroTren != 12)) {
+    					console.log("El tren numero "+numeroTren+" esta funcionando");
+    				} else if (numeroTren == 10 || numeroTren == 12){
+    					console.log("IMPORTANTE: El tren numero "+numeroTren+" es nocturno");
+    				} else {
+    					console.log("El tren numero "+numeroTren+" esta parado");
+    				};		
+    			};
+    		};
+    	} else {
+    		console.log("IMPORTANTE: Ningún tren esta funcionando");
+    	};
+    };
 ```
 
 
@@ -236,10 +302,33 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 *NOTA: EL TREN 3 SOLO FUNCIONA LOS SÁBADOS. Es necesario incluir el día de la semana en tu código*
 
 ```javascript
-    // Tu solución
+    var trenesOperativos = 8;
+    var totalTrenes = 12;
+    var diaSemana = "Sabado";
+    function estadoDetalle () {
+    	if (trenesOperativos > 0) {
+    		if(trenesOperativos == totalTrenes){
+    			console.log("Todos los trenes están funcionando");
+    		} else {
+    			for(var numeroTren = 1; numeroTren <= totalTrenes; numeroTren++) {
+    				if (numeroTren <= trenesOperativos  && numeroTren != 3 && numeroTren != 10 && numeroTren != 12) {
+    					console.log("El tren numero "+numeroTren+" esta funcionando");
+    				} else if (numeroTren == 10 || numeroTren == 12){
+    					console.info("IMPORTANTE: El tren numero "+numeroTren+" es nocturno");
+    				} else if (numeroTren == 3 && diaSemana == "Sabado"){
+    					console.info("El tren fiestero("+numeroTren+") esta funcionando.")
+    				} else if (numeroTren == 3 && diaSemana != "Sabado"){
+    					console.info("El tren fiestero("+numeroTren+") funcionará el sabado.")
+    				} else {
+    					console.log("El tren numero "+numeroTren+" esta parado");
+    				};		
+    			};
+    		};
+    	} else {
+    		console.log("IMPORTANTE: Ningún tren esta funcionando");
+    	};
+    };
 ```
-
-
 
 **Funciones**
 
@@ -450,10 +539,11 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 	
     ```javascript
 		function factorial(n){
-		   if(n <= 1)
-		      return 1
-		   else
-		      return n * factorial(n-1)
+			if(n <= 1){
+		    	return 1
+		  	} else {
+		    	return n * factorial(n-1)
+			}
 		}
 		
 		factorial(0); // n! = 1
@@ -767,160 +857,3 @@ Info:
 - Más información: 
 	- [Callback Functions in JavaScript de Louis Lazaris](http://www.impressivewebs.com/callback-functions-javascript/)
 	- [Creando y utilizando callbacks de Pablo Novas en fernetjs](https://fernetjs.com/2011/12/creando-y-utilizando-callbacks/)
-
-
-
-**Ejercicios**
-
-19 - Necesitamos saber cuantos pasajeros están utilizando cada una de estas rutas temporales, para ellos la empresa decide añadir un numero de billete para cada pasajero.  El número de billete tiene que seguir una estructura fija.
-
-*Nota: El formato del número de billete deseado:
-- (Inicial de la estación)(número de viajero) -> H1 (Hortaleza 1), T120 (Tetuan 120), M110 (Moncloa 110), etc...*
-
-```javascript
-    // Tu solución
-
-```
-
-
-20 - Gracias al ejercicio anterior, hemos podido saber a groso modo cuantos pasajeros van en cada línea.
-
-La empresa considera que con estos datos, usará trenes con menos vagones que le permitirán transportar a los pasajeros en menos tiempo.
-
-Pero existe el riesgo de dejar pasajeros esperando mucho tiempo.
-
-Así que haremos una nueva función que avise al revisor cuando no quede sitio en el próximo tren.
-
-El revisor del tren debe repartir tickets restaurante a los pasajeros para que puedan tomar una consumición gratis en la cafetería de la estación, si no tienen sitio en el próximo tren.
-
-*Nota: La linea es única y el mismo tren cubre todo el trayecto.*
-
-```javascript
-    // Tu solución
-```
-
-
-**Objetos Literales**
-
-- Propiedades:
-    ```javascript
-	var miObjeto = {
-	    cadena: 'esto es una cadena',
-	    numero: 2,
-	    booleano: false
-	};
-	```
-
-
-- Métodos:
-    ```javascript
-	var miObjeto = {
-	    saludar: function(){
-			console.log("hola!");
-		}
-	};
-	```
-	
-- Trabajando con espacios y caracteres especiales:
-    ```javascript
-	var miObjeto = {
-		nombre: "objeto",
-	    "año": 2015,
-	    "estado del sistema": "correcto"
-	};
-	
-	console.log(miObjeto["año"]);
-	miObjeto["estado del sistema"] = "fuera de servicio";
-	console.log(miObjeto["estado del sistema"]);
-	```
-
-- Acortar objetos:
-
-    ```javascript
-	var objetoAbreviado = objeto.muy.muy.largo.que.tiene.muchos["metodos y propiedades"];
-	
-	objetoAbreviado.propiedad1;
-	objetoAbreviado.metodo1();
-
-	```
-
-
-**Ejercicios Repaso - Cajero Automático**
-![cajero automatico](http://rack.1.mshcdn.com/media/ZgkyMDE0LzAyLzI2L2YwL0JpdGNvaW5fQVRNLmJjN2IxLmpwZwpwCXRodW1iCTEyMDB4NjI3IwplCWpwZw/bdee5162/0fe/Bitcoin_ATM.jpg)
-
-1 - Definimos el objeto
-
-```javascript
-	// Tu solución
-```
-
-2 - Añadimos detalles básicos(clientes y propiedades)
-
-```javascript
-    // Tu solución
-```
-
-
-3 - Añadimos detalles adicionales (volumen)
-
-```javascript
-    // Tu solución
-```
-
-
-4 - Añadimos funciones para quitar y añadir clientes
-
-```javascript
-    // Tu solución
-	
-```
-
-
-5 - Añadimos una propiedad para contabilizar las operaciones realizadas
-
-```javascript
-    // Tu solución
-```
-
-
-6 - Creamos una función para eliminar una propiedad si no contiene cierta cantidad de datos.
-*Nota: borrandoDatosVacios (objeto, propiedad, valorMinimo)*
-
-```javascript
-    // Tu solución
-```
-
-
-7 - Añadimos funciones de control de operaciones (contabilizar operaciones realizadas y fallidas) y funciones de administracción (agregar y quitar dinero)
-
-```javascript
-    // Tu solución
-```
-
-
-8 - Añadimos funciones para operaciones económicas y verificación de los clientes
-
-```javascript
-    // Tu solución
-```
-
-
-9 - Creamos un log detallado y una cuenta total
-
-```javascript
-    // Tu solución
-```
-
-
-10 - Refactorizamos y dejamos todo preparado para incluirlo en nuestro html, usando lo que hemos aprendido. 
-	Evitando tambien que las funciones puedan ser accedidas desde la consola u otras librerias.
-
-```javascript
-    // Tu solución
-```
-
-11 (opcional) - Integrarlo con el html y bloquea el uso del de las funciones por consola
-
-```javascript
-	// Ejercicio Opcional
-```
