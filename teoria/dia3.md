@@ -709,7 +709,7 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 *Nota: El primer asiento del tren es el 1 y no el 0.*
 
 ```javascript
-    // Tu solución
+    var pasajeros = ["Alicia Gutierrez", "Alfonso Gomez", "Luis Navarro", "Oscar Garcia", "Andres Fernandez", "Lucia Mellado"];
 ```
 
 - Respuesta esperada (consola):
@@ -728,7 +728,27 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 *Nota: Pensemos que a la larga pueden existir más listas.*
 
 ```javascript
-    // Tu solución
+    	var pasajeros = ["Alicia Gutierrez", "Alfonso Gomez", "Luis Navarro", "Oscar Garcia", "Andres Fernandez", "Lucia Mellado"];
+
+	function agregarPasajero(nombre, lista) {
+		lista.push(nombre);
+		return lista
+	};
+
+	function quitarPasajero(nombre, lista) {
+		if (lista.length == 0) {
+			console.log("La lista \""+lista+"\" esta vacía.");
+		} else {
+			for (var i = 0; i < lista.length; i++) {
+				if(lista[i] == nombre){
+					lista.splice(i, 1);
+					return lista;
+				} else if (i == lista.length -1){
+					console.log("El pasajero \""+nombre+"\" no encontrado!")
+				};
+			};
+		};
+	};
 ```
 
 
@@ -736,7 +756,46 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 *Nota: Al borrar en el ejercicio anterior las posiciones de los pasajeros cambiaban y los billetes quedaban desactualizados.*
 
 ```javascript
-    // Tu solución
+    var pasajeros = ["Alicia Gutierrez", "Alfonso Gomez", "Luis Navarro", "Oscar Garcia", "Andres Fernandez", "Lucia Mellado"];
+
+	function agregarPasajero(nombre, lista) {
+		if(lista.length == 0){
+			lista.push(nombre);
+			console.log("El pasajero "+nombre+" añadido con éxito, asiento asignado 0");
+		}else {
+			for (var i = 0; i < lista.length; i++) {
+				if (lista[i] == undefined) {
+					lista[i] = nombre;
+					console.log("El pasajero "+nombre+" añadido con éxito, asiento asignado "+(i+1));
+					return true
+				} else if (i == lista.length -1){
+					lista.push(nombre);
+					console.log("El pasajero "+nombre+" añadido con éxito, asiento asignado "+(i+1));
+					console.log("INFO: En esta lista no quedan asientos pendientes de asignación.")
+					return true
+				};
+			};
+		};
+	};
+
+
+	function quitarPasajero(nombre, lista) {
+		if (lista.length == 0) {
+			console.log("La lista \""+lista+"\" esta vacía.");
+			return false
+		} else {
+			for (var i = 0; i < lista.length; i++) {
+				if(lista[i] == nombre){
+					lista[i] = undefined;
+					console.log("El pasajero \""+nombre+"\" eliminado con éxito!")
+					return true;
+				} else if (i == lista.length -1){
+					console.log("El pasajero \""+nombre+"\" no encontrado!");
+					return false
+				};
+			};
+		};
+	};
 	
 ```
 
@@ -754,7 +813,22 @@ Info:
    	- Hortaleza (21)
 
 ```javascript
-    // Tu solución
+	var nuevasRutas = [ ["Tetuán", 12], ["Moncloa", 19], ["Hortaleza", 21] ];
+
+	function constructorDeTickets (estacion, tiempo) {
+		return function (nombre) {
+			console.log("Sr/a. "+nombre+".\n Muchas gracias por adquirir este ticket gratuito en el "+estacion+" express.\n El tiempo estimado de llegada es de "+tiempo+" minutos.\n Estamos trabajando en la mejora de nuestra vía principal, disculpe las molestias!");
+		};
+	}
+
+	var tetuanExpress = constructorDeTickets ("Tetuán", 12);
+	var moncloaExpress = constructorDeTickets (nuevasRutas[1][0], nuevasRutas[1][1]);
+	var hortalezaExpress = constructorDeTickets (nuevasRutas[2][0], nuevasRutas[2][1]);
+
+	tetuanExpress ("Pepe");
+	moncloaExpress ("Luis");
+	hortalezaExpress ("Hector");
+
 ```
 
 
