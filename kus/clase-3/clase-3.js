@@ -124,7 +124,7 @@ estadoDetalle5();
  */
 
 function estadoDetalle6() {
-  console.log("%cEjercio 13", "color: blue; font-size: large;");
+  console.log("%cEjercio 12", "color: blue; font-size: large;");
 
   var diaSemana = 'Sábado';
 
@@ -140,6 +140,92 @@ function estadoDetalle6() {
 }
 
 estadoDetalle6();
+
+/**
+ * Imprimamos cada pasajero de la lista y su número de asiento
+ * (basado en el orden del índice). Nota: El primer asiento del tren es el 1 y no el 0.
+ */
+function estadoDetalle7() {
+  console.log("%cEjercios 13, 14 y 15", "color: blue; font-size: large;");
+
+  var pasajeros = ["Luis", "Pepe", "Ana", "María", "Juan", "Alicia", "Elena", "Enrique"];
+  for (var i = 0, asiento = 1; i < pasajeros.length; i++) {
+    console.log('El pasajero ' + pasajeros[i] + ' tiene reservado el asiento ' + asiento);
+    asiento++;
+  }
+}
+
+estadoDetalle7();
+
+/**
+ * 16 - Necesitamos una función para agregar y otra para borrar
+ * pasajeros de la lista. Nota: Pensemos que a la larga pueden existir más listas.
+ */
+function agregarPasajeros(pasajeros, nuevosPasajeros) {
+  for (var i in nuevosPasajeros) {
+    pasajeros.push(nuevosPasajeros[i]);
+  }
+  return pasajeros;
+}
+
+var nuevosPasajeros = agregarPasajeros(["Luis", "Pepe", "Ana", "María", "Juan", "Alicia", "Elena", "Enrique"], ["Patricia", "Sandra", "Azucena", "Jorge"]);
+console.log("%cEjercicio 16 (agregar pasajeros)", "color: blue; font-size: large;", nuevosPasajeros);
+
+/**
+ * 16 - Necesitamos una función para agregar y otra para borrar
+ * pasajeros de la lista. Nota: Pensemos que a la larga pueden existir más listas.
+ */
+
+function quitarPasajeros(pasajeros, pasajerosAQuitar) {
+  for (var i = 0; i < pasajerosAQuitar.length; i++) {
+    if (pasajeros.indexOf(pasajerosAQuitar[i]) !== -1) {
+      pasajeros[pasajeros.indexOf(pasajerosAQuitar[i])] = undefined;
+    }
+  }
+
+  return pasajeros;
+}
+
+var nuevosPasajeros2 = quitarPasajeros(nuevosPasajeros, ["Luis", "María", "Patricia"]);
+console.log("%cEjercicio 16 y 17 (quitar pasajeros)", "color: blue; font-size: large;", nuevosPasajeros2);
+
+/**
+ * 18 - Una de las vías principales esta en obras. Así que nuestra compañía
+ * decidió usar antiguas vías para hacer transbordos directos entre las estaciones afectadas.
+ * Nuestra Misión es añadir el tiempo estimado en los billetes para las estaciones afectadas
+ * Tetuán, Moncloa y Hortaleza. Es necesario incluir un texto informativo y el nombre
+ * del usuario también en el billete.
+ * Nota: Intenta utilizar Closures
+ * Info:
+ * - Tetuán (12) - Moncloa (19) - Hortaleza (21)
+ */
+
+function addInfo(estacion, tiempo) {
+  return function(pasajero) {
+    return "Estimado/a " + pasajero + ". El tiempo de espera para la estación de " + estacion + " es de " + tiempo + " minutos";
+  }
+}
+
+var estacionesAfectadas = [
+  { estacion: "Tetúan", tiempo: 12 },
+  { estacion: "Moncloa", tiempo: 20 },
+  { estacion: "Hortaleza", tiempo: 15 }
+];
+
+var infoTetual = addInfo(estacionesAfectadas[0].estacion, estacionesAfectadas[0].tiempo);
+var infoMoncloa = addInfo(estacionesAfectadas[1].estacion, estacionesAfectadas[1].tiempo);
+var infoHortaleza = addInfo(estacionesAfectadas[2].estacion, estacionesAfectadas[2].tiempo);
+
+console.log( infoTetual("Pepe") );
+console.log( infoHortaleza("Luis") );
+console.log( infoHortaleza("María") );
+
+
+
+
+
+
+
 
 
 
