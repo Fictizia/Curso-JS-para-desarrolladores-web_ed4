@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript">
+            /* 19 - Necesitamos saber cuantos pasajeros están utilizando cada una de estas rutas temporales, para ellos la empresa decide 
+            añadir un numero de billete para cada pasajero. El número de billete tiene que seguir una estructura fija.
+            *Nota: El formato del número de billete deseado:
+            (Inicial de la estación)(número de viajero) -> H1 (Hortaleza 1), T120 (Tetuan 120), M110 (Moncloa 110), etc...*
+            */
+            
+            function constructorDeTickets(estacion) {
+                var posicion = 0;
+                return function(nombre){
+                    console.log("Sr " + nombre + " Destino: " + estacion + ". Billete: " + estacion.charAt(0) + posicion++);
+                }
+            }
+            
+            var tetuanExpress = constructorDeTickets("Tetuan");
+            var moncloaExpress = constructorDeTickets("Moncloa");
+            var hortalezaExpress = constructorDeTickets("Hortaleza");
+            
+            tetuanExpress("Rocio");
+            moncloaExpress("Raul");
+            hortalezaExpress("Antonio");
+            tetuanExpress("Elena");
+            tetuanExpress("Gus");
+            
+        </script>
+    </head>
+    <body></body>
+</html>
