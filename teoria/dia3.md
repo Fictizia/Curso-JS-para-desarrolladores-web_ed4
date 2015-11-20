@@ -701,7 +701,7 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 14 - Hagamos una lista de pasajeros efectiva usando Arrays
 
 ```javascript
-    // Tu solución
+    var pasajeros = ["Alicia Gutierrez", "Alfonso Gomez", "Luis Navarro", "Oscar Garcia", "Andres Fernandez", "Lucia Mellado"];
 ```
 
 
@@ -710,6 +710,12 @@ El 12 será destinado a cubrir esta necesidad, exactamente igual que el 10 anter
 
 ```javascript
     var pasajeros = ["Alicia Gutierrez", "Alfonso Gomez", "Luis Navarro", "Oscar Garcia", "Andres Fernandez", "Lucia Mellado"];
+
+    function listaPasajeros(){
+        for (var i = 0; i < pasajeros.length; i++) {
+            console.log("El pasajero "+pasajeros[i]+" tiene reservado el asiento "+(i+1));
+        };
+    };
 ```
 
 - Respuesta esperada (consola):
