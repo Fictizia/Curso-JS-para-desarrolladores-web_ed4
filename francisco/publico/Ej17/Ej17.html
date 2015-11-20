@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript">
+            /* 17 - La compañía de trenes ha decidido que los viajeros podrán reservar el asiento asignado, pero quiere evitar que los pasajeros 
+            cambien de asiento constantemente cuando se anula un o varios billetes. Nota: Al borrar en el ejercicio anterior las posiciones 
+            de los pasajeros cambiaban y los billetes quedaban desactualizados. */
+            
+            var pasajeros = [];
+            pasajeros = ["Manuel", "Rocio", "Pepe", "Paco", "Manoli", "Juanjo", "Elena"];
+            
+            function eliminarPasajero(pasajero) {
+                var position = buscaPasajero(pasajero);
+                if(position != -1) {
+                    pasajeros[position] = undefined;
+                    console.log(pasajero + " - Pasajero eliminado");
+                }
+            }
+            
+            function buscaPasajero(pasajero) {
+                for(var i = 0; i < pasajeros.length - 1; i++) {
+                    if(pasajeros[i] === pasajero) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+            
+            function buscaSitioLibre() {
+                for(var i = 0; i < pasajeros.length - 1; i++) {
+                    if(pasajeros[i] === undefined) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+            
+            function anadirPasajeros(pasajero) {
+                var sitioLibre = buscaSitioLibre();
+                if(sitioLibre == -1) {
+                    pasajeros.push(pasajero);    
+                } else {
+                    pasajeros[sitioLibre] = pasajero;
+                }
+                console.log(pasajero + " - Pasajero añadido");
+            }
+            
+            function mostrarPasajeros() {
+                for(var i = 1; i <= pasajeros.length; i++) {
+                    console.log("El pasajero " + pasajeros[i-1] + " tiene reservado el asiento " + i);
+                }
+            }
+            
+            anadirPasajeros("Manuel L");
+            mostrarPasajeros();
+            eliminarPasajero("Rocio");
+            eliminarPasajero("Juanjo");
+            anadirPasajeros("Rocio Hija");
+            anadirPasajeros("Juanjo Nieto");
+            anadirPasajeros("Pasajero nuevo");
+            mostrarPasajeros();
+        </script>
+    </head>
+    <body></body>
+</html>
