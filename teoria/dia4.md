@@ -184,9 +184,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antiguedad no es un número");
-	    }
 	    this.detalles = function(){
 	      console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
 	    }
@@ -205,9 +202,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	};
 
 	coche.prototype.detalles = function(){
@@ -227,9 +221,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	    this.detalles = dameDetalles;
 	};
 
@@ -250,9 +241,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	    this.detalles = dameDetalles;
 	};
 
@@ -260,9 +248,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.taraMinima = taraMinima;
 	    this.cargaUtil = cargaUtil;
 	    this.volumenCarga = volumenCarga;
-	    if (isNaN(this.taraMinima) || isNaN(this.cargaUtil) || isNaN(this.volumenCarga)) {
-	        console.log("Error en los datos. Por favor usar solo valores numéricos.");
-	    }
 	    this.detallesTecnicos = detallesTecnicos;
 	};
 
