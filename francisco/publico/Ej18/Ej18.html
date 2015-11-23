@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript">
+            /* 18 - Una de las vías principales esta en obras. Así que nuestra compañía decidió usar antiguas vías para 
+                hacer transbordos directos entre las estaciones afectadas.Nuestra Misión es añadir el tiempo estimado en los 
+                billetes para las estaciones afectadas Tetuán, Moncloa y Hortaleza. Es necesario incluir un texto informativo y el nombre del usuario también en el billete.
+
+                Nota: Intenta utilizar Closures
+        
+                Info:
+                    - Tetuán (12) - Moncloa (19) - Hortaleza (21) 
+            */
+            
+            var nuevasRutas = [["Tetuan", 12], ["Moncloa", 19], ["Hortaleza", 21]];
+            function constructorDeTickets(estacion, tiempo) {
+                return function(nombre){
+                    console.log("Sr " + nombre + " Destino: " + estacion + ". El tiempo estimado es " + tiempo);
+                }
+            }
+            
+            var tetuanExpress = constructorDeTickets("Tetuan", 12);
+            var moncloaExpress = constructorDeTickets(nuevasRutas[1][0], nuevasRutas[1][1]);
+            var hortalezaExpress = constructorDeTickets(nuevasRutas[2][0], nuevasRutas[2][1]);
+            
+            tetuanExpress("Rocio");
+            moncloaExpress("Raul");
+            hortalezaExpress("Antonio");
+            
+        </script>
+    </head>
+    <body></body>
+</html>

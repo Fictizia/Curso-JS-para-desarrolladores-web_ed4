@@ -52,8 +52,24 @@
 - (Inicial de la estación)(número de viajero) -> H1 (Hortaleza 1), T120 (Tetuan 120), M110 (Moncloa 110), etc...*
 
 ```javascript
-    // Tu solución
+    var nuevasRutas = [ ["Tetuán", 12], ["Moncloa", 19], ["Hortaleza", 21] ];
 
+	function constructorDeTickets (estacion, tiempo) {
+		var numeroPasajero = 0;
+		return function (nombre) {
+			numeroPasajero++;
+			console.log("Sr/a. "+nombre+".\n Muchas gracias por adquirir este ticket gratuito en el "+estacion+" express.\n Billete Número:\t"+(estacion.charAt(0)+numeroPasajero)+"\n El tiempo estimado de llegada es de "+tiempo+" minutos.\n  Estamos trabajando en la mejora de nuestra vía principal, disculpe las molestias!");
+		};
+	}
+
+	var tetuanExpress = constructorDeTickets ("Tetuán", 12);
+	var moncloaExpress = constructorDeTickets (nuevasRutas[1][0], nuevasRutas[1][1]);
+	var hortalezaExpress = constructorDeTickets (nuevasRutas[2][0], nuevasRutas[2][1]);
+	
+	
+	tetuanExpress ("Pepe");
+	moncloaExpress ("Luis");
+	hortalezaExpress ("Hector");
 ```
 
 
@@ -70,7 +86,27 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 *Nota: La linea es única y el mismo tren cubre todo el trayecto.*
 
 ```javascript
-    // Tu solución
+    function capacidad (ultimoPasajero, numeroMaximo) {
+
+		function sinSitios () {
+			console.log("IMPORTANTE: No queda sitio, por favor... saca los tickets restaurante!")
+			console.log ("Capacidad:\t"+ultimoPasajero+"/"+numeroMaximo);
+		};
+		function quedaSitio () {
+			console.log ("Capacidad:\t"+ultimoPasajero+"/"+numeroMaximo);
+		};
+
+		if (ultimoPasajero >= numeroMaximo){
+			sinSitios();
+		} else {
+			quedaSitio();
+		};
+
+	};
+	
+	capacidad(10, 50);
+	capacidad(50, 50);
+	capacidad(55, 50);
 ```
 
 
@@ -148,9 +184,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antiguedad no es un número");
-	    }
 	    this.detalles = function(){
 	      console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
 	    }
@@ -169,9 +202,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	};
 
 	coche.prototype.detalles = function(){
@@ -191,9 +221,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	    this.detalles = dameDetalles;
 	};
 
@@ -214,9 +241,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.antiguedad = antiguedad;
 	    this.color = color;
 	    this.tipo = tipo;
-	    if (isNaN(this.antiguedad)) {
-	        console.log("Error en el data-typing, antigüedad no es un número");
-	    }
 	    this.detalles = dameDetalles;
 	};
 
@@ -224,9 +248,6 @@ El revisor del tren debe repartir tickets restaurante a los pasajeros para que p
 	    this.taraMinima = taraMinima;
 	    this.cargaUtil = cargaUtil;
 	    this.volumenCarga = volumenCarga;
-	    if (isNaN(this.taraMinima) || isNaN(this.cargaUtil) || isNaN(this.volumenCarga)) {
-	        console.log("Error en los datos. Por favor usar solo valores numéricos.");
-	    }
 	    this.detallesTecnicos = detallesTecnicos;
 	};
 
