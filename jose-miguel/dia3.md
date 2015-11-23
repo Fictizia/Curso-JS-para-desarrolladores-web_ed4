@@ -150,14 +150,14 @@ trenes(7, 10, 12, 12, 's');
 13 - Hagamos una lista de pasajeros (min. 6)
 
 ```javascript
-    // Tu solución
+    // ver ejercicio siguiente
 ```
 
 
 14 - Hagamos una lista de pasajeros efectiva usando Arrays
 
 ```javascript
-    // Tu solución
+    var pasajeros = ['Alicia Gutierrez', 'Alfonso Gomez', 'Luis Navarro', 'Oscar Garcia', 'Andres Fernandez', 'Lucia Mellado'];
 ```
 
 
@@ -165,7 +165,19 @@ trenes(7, 10, 12, 12, 's');
 *Nota: El primer asiento del tren es el 1 y no el 0.*
 
 ```javascript
-    // Tu solución
+    var pasajeros = ['Alicia Gutierrez', 'Alfonso Gomez', 'Luis Navarro', 'Oscar Garcia', 'Andres Fernandez', 'Lucia Mellado'];
+
+    var asientos = function(listaPasajeros) {
+        for (var pasajero = 0; pasajero < listaPasajeros.length; pasajero++) {
+
+            var asiento = pasajero+1;
+            var persona = listaPasajeros[pasajero];
+
+            console.log('El pasajero '+persona+' tiene reservado el asiento '+asiento);
+        }
+    };
+
+    asientos(pasajeros);
 ```
 
 - Respuesta esperada (consola):
@@ -184,7 +196,42 @@ trenes(7, 10, 12, 12, 's');
 *Nota: Pensemos que a la larga pueden existir más listas.*
 
 ```javascript
-    // Tu solución
+// TODO: terminar este ejercicio bien
+//
+var pasajeros = ['Alicia Gutierrez', 'Alfonso Gomez', 'Luis Navarro', 'Oscar Garcia', 'Andres Fernandez', 'Lucia Mellado'];
+
+var asientos = function(listaPasajeros) {
+    for (var pasajero = 0; pasajero < listaPasajeros.length; pasajero++) {
+
+        var asiento = pasajero+1;
+        var persona = listaPasajeros[pasajero];
+
+        return console.log('El pasajero '+persona+' tiene reservado el asiento '+asiento);
+    }
+};
+
+//asientos(pasajeros);
+
+var eliminarPasajero = function(pasajero, lista) {
+    return lista.splice(pasajero-1, 1, undefined);
+};
+
+var agregarPasajero = function(pasajero, lista) {
+    for (var i = 0; i < lista.length; i++) {
+        if (lista[i] === undefined) {
+            return lista.splice(i, 1, pasajero);
+        } else {
+            return lista.push(pasajero);
+        }
+    }
+};
+
+eliminarPasajero(2, pasajeros);
+
+agregarPasajero('pepito perez', pasajeros);
+agregarPasajero('juanito perez', pasajeros);
+
+console.log(pasajeros);
 ```
 
 
