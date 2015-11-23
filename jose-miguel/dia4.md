@@ -1,0 +1,519 @@
+# Clase 4
+
+**Ejercicios**
+
+19 - Necesitamos saber cuantos pasajeros están utilizando cada una de estas rutas temporales, para ellos la empresa decide añadir un numero de billete para cada pasajero.  El número de billete tiene que seguir una estructura fija.
+
+*Nota: El formato del número de billete deseado:
+- (Inicial de la estación)(número de viajero) -> H1 (Hortaleza 1), T120 (Tetuan 120), M110 (Moncloa 110), etc...*
+
+```javascript
+    // Tu solución
+
+```
+
+
+20 - Gracias al ejercicio anterior, hemos podido saber a groso modo cuantos pasajeros van en cada línea.
+
+La empresa considera que con estos datos, usará trenes con menos vagones que le permitirán transportar a los pasajeros en menos tiempo.
+
+Pero existe el riesgo de dejar pasajeros esperando mucho tiempo.
+
+Así que haremos una nueva función que avise al revisor cuando no quede sitio en el próximo tren.
+
+El revisor del tren debe repartir tickets restaurante a los pasajeros para que puedan tomar una consumición gratis en la cafetería de la estación, si no tienen sitio en el próximo tren.
+
+*Nota: La linea es única y el mismo tren cubre todo el trayecto.*
+
+```javascript
+    // Tu solución
+```
+
+
+
+### JS avanzado (POO)
+
+**POO**
+
+- Programación basada en prototipos
+
+>La programación basada en prototipos es un estilo de programación orientada a objetos en la que las clases no están presentes y la reutilización de comportamiento (conocido como herencia en lenguajes basados en clases) se lleva a cabo a través de un proceso de decoración de objetos existentes que sirven de prototipos. Este modelo también se conoce como programación sin clases, orientada a prototipos o basada en ejemplos.
+>[Mozilla developer network](https://developer.mozilla.org/es/docs/Web/JavaScript/Introducci%C3%B3n_a_JavaScript_orientado_a_objetos)
+
+
+- Terminología
+
+>
+- Clase
+	- Define las características del Objeto.
+- Objeto
+	- Una instancia de una Clase.
+- Propiedad
+	- Una característica del Objeto, como el color.
+- Método
+	- Una capacidad del Objeto, como caminar.
+- Constructor
+	- Es un método llamado en el momento de la creación de instancias.
+- Herencia
+	- Una Clase puede heredar características de otra Clase.
+- Encapsulamiento
+	- Una Clase sólo define las características del Objeto, un Método sólo define cómo se ejecuta el Método.
+- Abstracción
+	- La conjunción de herencia compleja, métodos, propiedades que un objeto debe ser capaz de simular en un modelo de la realidad.
+- Polimorfismo
+	- Diferentes Clases podrían definir el mismo método o propiedad.
+> - [Mozilla developer network](https://developer.mozilla.org/es/docs/Web/JavaScript/Introducci%C3%B3n_a_JavaScript_orientado_a_objetos)
+
+
+- Entendiendo los objetos:
+```javascript
+	/*
+	[Objeto]{
+	    [ Propiedad = Variables (no funciónes) ]
+	    [ Método = Solo funciónes ]
+	}
+	*/
+```
+
+
+- Constructor de Objetos:
+```javascript
+	var coche = function (parametros) {
+	    /* Codigo*/
+	};
+```
+
+
+- Propiedades del Objeto:
+```javascript
+	var coche = function (marca, modelo, antiguedad, color, tipo) {
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad
+	    this.color = color;
+	    this.tipo = tipo;
+	};
+```
+
+
+- Métodos (En el Constructor):
+```javascript
+	var coche = function (marca, modelo, antiguedad, color, tipo) {
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+	    if (isNaN(this.antiguedad)) {
+	        console.log("Error en el data-typing, antiguedad no es un número");
+	    }
+	    this.detalles = function(){
+	      console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
+	    }
+	};
+
+	var miCoche = new coche ("Seat", "Panda", 20, "azul", "turismo");
+	miCoche.detalles();
+```
+
+
+- Métodos (Extensión del prototipo):
+```javascript
+	var coche = function (marca, modelo, antiguedad, color, tipo) {
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+	    if (isNaN(this.antiguedad)) {
+	        console.log("Error en el data-typing, antigüedad no es un número");
+	    }
+	};
+
+	coche.prototype.detalles = function(){
+	  console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
+	}
+
+	var miCoche = new coche ("Seat", "Panda", 20, "azul", "turismo");
+	miCoche.detalles();
+```
+
+
+- Métodos (Vinculación Externa):
+```javascript
+	var coche = function (marca, modelo, antiguedad, color, tipo) {
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+	    if (isNaN(this.antiguedad)) {
+	        console.log("Error en el data-typing, antigüedad no es un número");
+	    }
+	    this.detalles = dameDetalles;
+	};
+
+	function dameDetalles(){
+	  console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
+	}
+
+	var miCoche = new coche ("Seat", "Panda", 20, "azul", "turismo");
+	miCoche.detalles();
+```
+
+
+- Herencia:
+```javascript
+	var coche = function (marca, modelo, antiguedad, color, tipo) {
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+	    if (isNaN(this.antiguedad)) {
+	        console.log("Error en el data-typing, antigüedad no es un número");
+	    }
+	    this.detalles = dameDetalles;
+	};
+
+	var furgon = function (taraMinima, cargaUtil, volumenCarga) {
+	    this.taraMinima = taraMinima;
+	    this.cargaUtil = cargaUtil;
+	    this.volumenCarga = volumenCarga;
+	    if (isNaN(this.taraMinima) || isNaN(this.cargaUtil) || isNaN(this.volumenCarga)) {
+	        console.log("Error en los datos. Por favor usar solo valores numéricos.");
+	    }
+	    this.detallesTecnicos = detallesTecnicos;
+	};
+
+
+	function dameDetalles(){
+	  console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años, clase "+this.tipo+" y color "+this.color);
+	}
+
+	function detallesTecnicos(){
+	  console.warn("Tu coche tiene una Tara mínima de "+this.taraMinima+". Carga útil de "+this.cargaUtil+" y un volumen de carga de "+this.volumenCarga+"m3");
+	}
+
+	var miPickup = new coche ("Land Rover", "Santana Aníbal", 35, "Marrón tierra", "4x4");
+	miPickup.prototype = new furgon (1200, 768, 4.5);
+
+
+	miPickup.detalles();
+	miPickup.prototype.detallesTecnicos();
+```
+
+- Herencia (simplificada):
+```javascript
+	var perro  = function () {
+	    this.patas = 4;
+	    this.ojos = 2;
+	};
+
+	var pastorAleman = function () {
+	    this.colorLengua = "negra";
+	    this.colorOjos = "marrón";
+	    this.capacidadTrabajo = true;
+	    this.especialidad = "Pastoreo";
+	};
+
+	pastorAleman.prototype = new perro();
+
+	var miPerro = new pastorAleman();
+	console.log("Número patas: "+miPerro.patas+"\n Número ojos: "+miPerro.ojos+"\n Color Lengua: "+miPerro.colorLengua+"\n Color ojos: "+miPerro.colorOjos+"\n Capacidad de trabajo: "+miPerro.capacidadTrabajo+"\n Especialidad: "+miPerro.especialidad);
+```
+
+
+- Privado y público:
+```javascript
+	var cocheEmpresa = function (marca, modelo, antiguedad, color, tipo) {
+	    // públicas
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+
+	    // privadas
+	    var ITVPasada = true;
+	    var ITVfrecuencia = "Cada año";
+	    var seguroEnRegla = true;
+	    var companySeguros = "SegurExpress";
+	    var tipoSeguro = "a terceros";
+
+		// Público
+		this.dameDetalles = function () {
+			console.log("Tu coche es un "+marca+" "+modelo+" con "+antiguedad+" años, clase "+tipo+" y color "+color);
+	    }
+
+		// Privadas
+	    function datosPrivados() {
+	        if (ITVPasada && seguroEnRegla)
+	            console.info("INFO: Todo en Regla, tienes que pasar la ITV "+ITVfrecuencia+". Tienes un seguro "+tipoSeguro+" con "+companySeguros);
+	        else{
+	            console.error("ALERTA! El coche no puede usarse. El seguro o la ITV no esta en regla.");
+	        }
+	    }
+
+	    datosPrivados();
+	    this.dameDetalles();
+	};
+
+	var miCoche = new cocheEmpresa ("Audi", "S8", 2, "negro", "Berlina");
+	var miCoche2 = new cocheEmpresa ("Audi", "S4", 2, "Rojo", "Compacto");
+```
+
+- Datos opcionales:
+```javascript
+	var cocheEmpresa = function (marca, modelo, antiguedad, color) {
+
+	    this.marca = marca || "Seat";
+	    this.modelo = modelo || "Ibiza";
+	    this.antiguedad = antiguedad || 6;
+	    this.color = color || "Azul Corporativo";
+
+		this.dameDetalles = function () {
+			console.log("Tu coche es un "+this.marca+" "+this.modelo+" con "+this.antiguedad+" años y color "+this.color);
+	    }
+
+	    this.dameDetalles();
+	};
+
+	var miCoche = new cocheEmpresa ("Audi", "S8", 2, "negro", "Berlina");
+	var miCoche2 = new cocheEmpresa ();
+	var otroCoche = new cocheEmpresa ("Seat", "Leon");
+```
+
+
+- Creando un ID:
+```javascript
+
+	var contador = 0;
+	var cocheEmpresa = function (marca, modelo, antiguedad, color, tipo) {
+
+	    this.marca = marca;
+	    this.modelo = modelo;
+	    this.antiguedad = antiguedad;
+	    this.color = color;
+	    this.tipo = tipo;
+	   	this.id = contador++;
+
+	    var ITVPasada = true;
+	    var ITVfrecuencia = "Cada año";
+	    var seguroEnRegla = true;
+	    var companySeguros = "SegurExpress";
+	    var tipoSeguro = "a terceros";
+
+		this.dameDetalles = function () {
+			console.log("Tu coche es un "+marca+" "+modelo+" con "+antiguedad+" años, clase "+tipo+" y color "+color);
+	    }
+
+	    function datosPrivados() {
+	        if (ITVPasada && seguroEnRegla)
+	            console.info("INFO: Todo en Regla, tienes que pasar la ITV "+ITVfrecuencia+". Tienes un seguro "+tipoSeguro+" con "+companySeguros);
+	        else{
+	            console.error("ALERTA! El coche no puede usarse. El seguro o la ITV no esta en regla.");
+	        }
+	    }
+
+	    function identificador(){
+	        console.warn("Recuerda! Tu coche esta identificado como coche numero "+contador);
+	    }
+
+
+	    datosPrivados();
+	    this.dameDetalles();
+	    identificador();
+	};
+
+	var miCoche = new cocheEmpresa ("Audi", "S8", 2, "negro", "Berlina");
+	var otroCoche = new cocheEmpresa ("Audi", "A8", 5, "gris", "Berlina");
+	var miCoche2 = new cocheEmpresa ("Seat", "Ibiza", 9, "rojo", "Utilitario");
+	console.info("Total de coches de empresa hasta el momento "+contador);
+```
+
+
+- Extensión de objetos nativos (usando prototipos):
+```javascript
+	Array.prototype.coincidencias = function(palabra) {
+	    var coincidencias = 0;
+	    for (var i=0; i<this.length; i++) {
+	        if (this[i] == palabra) {
+	            coincidencias++;
+	        }
+	    }
+	    console.warn("Se encontraron "+coincidencias+" coincidencia(s) de la palabra");
+	};
+
+
+	var amigos = ["Charlie", "Marco", "Luis", "Jose", "Miguel", "Jose", "Luis", "Oscar"];
+	amigos.coincidencias("Jose");
+```
+
+**Ejercicios Repaso - Cajero Automático**
+![cajero automatico](http://rack.1.mshcdn.com/media/ZgkyMDE0LzAyLzI2L2YwL0JpdGNvaW5fQVRNLmJjN2IxLmpwZwpwCXRodW1iCTEyMDB4NjI3IwplCWpwZw/bdee5162/0fe/Bitcoin_ATM.jpg)
+
+El objetivo de este ejercicio es crear un cajero automático que funcione solamente con la consola de Chrome.
+
+- Importante:
+	- No es necesario utilizar POO
+	- No es necesario incluir Html o css
+	- No es necesario encapsular el código en una función anónima
+
+- Objetivos:
+	- Crear el cajero como un objeto literal
+	- Añadir detalles como empresa, tipo, materiales, tamaño, moneda, etc...
+	- Añadir métodos para el usuario administrador (añadir y retirar dinero del deposito)
+	- Añadir métodos para el administrador (agregar y quitar clientes de la lista de clientes autorizados)
+	- Añadir métodos para los clientes (añadir y retirar efectivo)
+	- Añadir métodos para validar los clientes (Clientes autorizados) y las cantidades (números reales)
+
+- Objetivos opcionales:
+	- Agrupa las operaciones realizadas en grupos (éxito o fracaso)
+	- Crear un sistema de log que registre todas las operaciones que se realizan con la mayor cantidad de detalles
+		- Tipo de error - "info" o "error".
+		- origen del error - "usuario", "maquina" o "administrador".
+		- (opcional) código de error - código de error
+		- (opcional) detalles - Descripción del error.
+	- Añadir un método para resetear (borrar) el log
+		- (opcional) utilizar como parámetro un número que nos permite borrar el log solo si no se llega a una determinada cantidad de operaciones registradas.
+
+- Consejos:
+	- Refactoriza a menudo
+	- Desarrolla paso a paso, usa comentarios y pseudocódigo si es necesario
+	- Mantén el código fácil
+	- Utiliza herramientas como [jsHint](http://jshint.com/)
+
+```javascript
+var clientes = {
+       cliente1: {
+            nombre: 'juan',
+            saldo: 234,
+            pass: 'juan123'
+        },
+        cliente2: {
+            nombre: 'jose',
+            saldo: 682,
+            pass: 'jose123'
+        },
+        cliente3: {
+            nombre: 'oscar',
+            saldo: 129,
+            pass: 'oscar123'
+        }
+};
+
+var cajero = {
+    empresa: 'ING Direct',
+    tipo: 'algun tipo',
+    materiales: ['metal', 'aluminio'],
+    tamaño: {
+        unidad: 'mm',
+        alto: 160,
+        ancho: 50
+    },
+    moneda: '$',
+    cuenta: 5000,
+    listaClientes: clientes,
+    clientesAutorizados: ['cliente1', 'cliente3'],
+    userLogged: false,
+    userLogin: function() {
+      var userName = prompt('Introduzca su identificador de usuario');
+      var userPass = prompt('Introduzca su contraseña');
+      
+      if(userName === 'admin' && userPass === 'admin') {
+        cajero.userLogged = 'admin';
+        return console.info('Hola administrador');
+      } else if (cajero.listaClientes[userName].pass === userPass) {
+        cajero.userLogged = userName;
+        console.clear();
+        return console.info('Hola ' + cajero.listaClientes[userName].nombre + '. Bienvenido al cajero de ' + cajero.empresa);
+      } else {
+        // cajero.userLogged = false;
+        return console.error('Hay un error con su usuario.');
+      }
+    },
+    userLogout: function() {
+      var adiosUser = cajero.userLogged;
+      if (cajero.userLogged !== false ) {
+        cajero.userLogged = false;
+        console.clear();
+        return console.info('Hasta luego, ' + cajero.listaClientes[adiosUser].nombre + '.');
+      } else {
+        console.clear();
+        return console.info('Tienes que logearte antes.');
+      }
+    },
+    admin: {
+        masDinero: function(dinero) {
+            cajero.cuenta += + dinero;
+            return console.log('Has metido ' + dinero + ' en el cajero. \n Queda ' + cajero.cuenta+cajero.moneda + ' en el cajero');
+        },
+        retirarDinero: function(dinero) {
+            cajero.cuenta -= dinero;
+            return console.log('Has sacado ' + dinero + ' en el cajero. \n Queda ' + cajero.cuenta+cajero.moneda + ' en el cajero');
+        },
+        cuantoQueda: function() {
+            console.clear();
+            return console.log('Queda ' + cajero.cuenta + cajero.moneda + ' en el cajero');
+        },
+        log: [],
+        addToLog: function(codigo, tipo, usuario) {
+          cajero.admin.log.push({
+             codigo: codigo,
+             tipo: tipo,
+             usuario: usuario,
+             fecha: new Date()
+            });
+        },
+        removeLog: function(){
+          cajero.admin.log.length = 0;
+          return console.log('Has borrado el log.');
+        },
+        showLog: function(tipo) {
+          var dato = cajero.admin.log;
+          for (var i = 0; i < dato.length; i++) {
+            console.log(dato[i].codigo + ' - ' + dato[i].usuario + ' - ' + dato[i].tipo);
+          }
+        }
+    },
+    cliente: {
+        sacarDinero: function (cantidad) {
+            var user = cajero.userLogged;
+            if (cajero.listaClientes[user].saldo >= cantidad && cajero.checkUser(user, cajero.clientesAutorizados ) && cajero.userLogged !== false ) {
+                cajero.listaClientes[user].saldo -= cantidad;
+                cajero.cuenta -= cantidad;
+                console.clear();
+                cajero.admin.addToLog(400, 'info', user);
+                return console.log('Has sacado ' + cantidad + cajero.moneda + ' de tu cuenta. \n Ahora tienes ' + cajero.listaClientes[user].saldo+cajero.moneda + ' en tu cuenta');
+            } else if (cajero.listaClientes[user].saldo < cantidad) {
+                console.clear();
+                return console.error('No tienes suficiente saldo en tu cuenta.');
+            } else {
+              return console.error('Error desconocido');
+            }
+        },
+        ingresarDinero: function (cantidad) {
+          if (cajero.userLogged !== false){
+            var user = cajero.userLogged;
+            cajero.listaClientes[user].saldo += cantidad;
+            cajero.cuenta += cantidad;
+            console.clear();
+            return console.log('Has ingresado ' + cantidad + cajero.moneda + ' de tu cuenta. \n Ahora tienes ' + cajero.listaClientes[user].saldo+cajero.moneda + ' en tu cuenta');
+          } else {
+            return console.error('Tienes que estar logueado para ingresar dinero.');
+          }
+        }
+    }
+};
+
+cajero.checkUser = function(usuario, lista) {
+  for (var i = 1; i <= lista.length+1; i++) {
+    if ( lista.indexOf(usuario) > -1 ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+};
+```
