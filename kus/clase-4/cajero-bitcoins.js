@@ -17,39 +17,53 @@ var CajeroBitCoins = {
   clientesAutorizados: [],
   funds: 0,
 
-  adminAddFunds: function(funds) {
+  addFunds: function(funds) {
+    if (!this.validateNumber(funds)) {
+      return {
+        error: true,
+        text: 'Por favor, dame BitCoins en formato numérico'
+      };
+    }
+
     this.funds += funds;
+    return funds;
   },
-  adminGetFunds: function(funds) {
+
+  getFunds: function(funds) {
+    if (!this.validateNumber(funds)) {
+      return {
+        error: true,
+        text: 'Por favor, pídeme Bitcoins en formato numérico.'
+      };
+    }
+
+    if (this.funds < funds) {
+      return {
+        error: true,
+        text: 'Lo siento, no tengo suficientes Bitcoins'
+      };
+    }
+
     if (this.funds >= funds) {
       this.funds -= funds;
       return funds;
     }
   },
-  adminAddAuthClient: function(client) {
+
+  addAuthClient: function(client) {
     this.clientesAutorizados.push(client);
   },
-  adminRemoveAuthClient: function(client) {
+  removeAuthClient: function(client) {
     if (this.validateClient(client)) {
-      this.clientesAutorizados.splice(client, 1);
+      this.clientesAutorizados.splice(this.clientesAutorizados.indexOf(client), 1);
     }
   },
 
   validateClient: function(client) {
-    // ToDo: nooooo!!
     return this.clientesAutorizados.indexOf(client) !== -1;
   },
-  validateNumber: function(n) {
-    return !isNan(n);
-  },
 
-  addFunds: function(funds) {
-    this.funds += funds;
-  },
-  getFunds: function(funds) {
-    if (this.funds >= funds) {
-      this.funds -= funds;
-      return funds;
-    }
+  validateNumber: function(n) {
+    return typeof n === 'number' && !isNaN(n);
   }
 };
