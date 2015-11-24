@@ -5,9 +5,94 @@
   <title>Clase 4 | Cajero Bitcoins</title>
   <style>
     body { font-family: sans-serif; }
+    dt { font-weight: bold; }
+    dd { margin: 5px 0 0; padding-bottom: 10px; border-bottom: 1px solid #D3D3D3; }
+    dt + dd { margin-bottom: 15px; }
+    input {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.25;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+    }
+
+    form {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    label {
+      flex: 0 80px;
+      text-align: right;
+      margin: auto 0;
+      font-weight: bold;
+    }
+    form * { margin-right: 10px; }
+    button {
+      font-family: inherit;
+      font-size: 100%;
+      background: #3188D3;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      padding: 0 10px;
+      outline: none;
+      transition: all .2s;
+    }
+    button:active {
+      transform: scale(.9);
+    }
+    button:focus {
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.2);
+    }
+
+    .add { background: #5AD33D; }
+    .remove { background: #AB2546; }
+
+    .bitcoins-input {
+      transition: all 600ms;
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    .increased {
+      color: #5AD33D;
+      border-color: currentColor;
+      box-shadow: inset 0 0 5px #D6E5D2;
+    }
+    .decreased {
+      color: #AB2546;
+      border-color: currentColor;
+      box-shadow: inset 0 0 5px #E7D0D6;
+    }
   </style>
 </head>
 <body>
+  <div class="cajero">
+    <h2>BitCoin info</h2>
+    <dl>
+      <dt>Bitcoins disponibles</dt>
+      <dd><input type="text" readonly id="bitcoins" class="bitcoins-input"></dd>
+
+      <dt>Clientes autorizados (<span id="client-count">0</span>)</dt>
+      <dd id="auth-clients"></dd>
+    </dl>
+
+    <h2>BitCoin controls</h2>
+    <form action="">
+      <label for="funds">Fondos</label>
+      <input type="number" id="funds">
+      <button class="add" type="button" id="add-funds">Añadir</button>
+      <button type="button" id="get-funds">Obtener</button>
+    </form>
+
+    <form action="">
+      <label for="client">Cliente</label>
+      <input type="text" id="client">
+      <button class="add" id="add-client" type="button">Añadir</button>
+      <button class="remove" id="remove-client" type="button">Eliminar</button>
+    </form>
+
+  </div>
   <script src="cajero-bitcoins.js"></script>
+  <script src="form-controller.js"></script>
 </body>
 </html>
