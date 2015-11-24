@@ -1,0 +1,87 @@
+var cajero = {
+   dinero: 5000,
+   clientes: [   ["Pablo",200], ["Pepito",3000], ["Juanito", 760], ["Jorgito", 1484]  ],
+   
+   
+   sacarAdmin: function(cantidad){
+      this.dinero = this.dinero - cantidad;
+      console.log(cantidad + " sacado. Total en banco es " + this.dinero);
+   },
+   
+   meterAdmin: function(cantidad){
+      this.dinero = this.dinero + cantidad;
+      console.log(cantidad + " metido. Total en banco es " + this.dinero);
+   },
+   
+   anadirCliente: function(nombre,dinero) {
+      for (var i = 0; i < this.clientes.length; i++) {
+         if (this.clientes[i][0] === undefined) {
+            this.clientes[i][0] = nombre;
+            this.clientes[i][1] = dinero;
+            this.dinero = this.dinero + dinero;
+            return;
+          }
+         }
+       this.clientes.push([]);
+       var a = this.clientes.length - 1;
+       this.clientes[a][0] = nombre;
+       this.clientes[a][1] = dinero;
+       this.dinero = this.dinero + dinero;
+   },
+   
+   borrarCliente: function(nombre) {
+   for (var i = 0; i <= this.clientes.length; i++) {
+      if (this.clientes[i][0] === nombre) {
+         this.clientes[0][0] = undefined;
+         this.dinero = this.dinero - this.clientes[i][1];
+         this.clientes[i][1] = undefined;
+         return;
+        }
+    }
+   console.log("Este cliente no esta en la lista");
+   },
+   
+   sacarCliente(nombre,dinero) {
+      for (var i = 0; i < this.clientes.length; i++) {
+         if (this.clientes[i][0] == nombre) {
+            if (dinero > this.clientes[i][1]) {
+               console.log("No hay suficente dinero para esta transación");
+               return;
+            }
+            else if (dinero % 10 != 0) {
+               console.log("Error! Transaciones tiene que ser en multiples de 10");
+               return;
+            }
+            else {
+               this.clientes[i][1] = this.clientes[i][1] - dinero;
+               this.dinero = this.dinero - dinero;
+               console.log("El cliente " + nombre + " ha sacado " + dinero + " euros.");
+               return;
+            }
+         }
+      }
+      console.log("Este cliente no esta en la lista");
+   },
+   
+   meterCliente(nombre,dinero) {
+      for (var i = 0; i < this.clientes.length; i++) {
+         if (this.clientes[i][0] == nombre) {
+            if (dinero % 10 != 0) {
+               console.log("Error! Transaciones tienen que ser en multiples de 10");
+               return;
+            }
+            else {
+               this.clientes[i][1] = this.clientes[i][1] + dinero;
+               this.dinero = this.dinero + dinero;
+               console.log("El cliente " + nombre + "ha metido " + dinero + " euros.");
+               return;
+            }
+         }
+      }
+      console.log("Este cliente no esta en la lista");
+   },
+};
+
+
+
+
