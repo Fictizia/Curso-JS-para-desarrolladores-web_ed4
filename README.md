@@ -1,3 +1,7 @@
+![shieldsIO](https://img.shields.io/github/issues/UlisesGascon/curso-js-web-developers-112015.svg)
+![shieldsIO](https://img.shields.io/github/forks/UlisesGascon/curso-js-web-developers-112015.svg)
+![shieldsIO](https://img.shields.io/github/stars/UlisesGascon/curso-js-web-developers-112015.svg)
+
 #JavaScript para desarrolladores web
 ###Programación JavaScript, Backbone.js, programación orientada a objetos, patrones de diseño y MVC
 
@@ -24,7 +28,7 @@ Teoría | Recursos
 [Clase 2](teoria/dia2.md) | [Clase 2](recursos/dia2.md)
 [Clase 3](teoria/dia3.md) | [Clase 3](recursos/dia3.md)
 [Clase 4](teoria/dia4.md) | [Clase 4](recursos/dia4.md)
-Clase 5 | Clase 5
+[Clase 5](teoria/dia5.md) | [Clase 5](recursos/dia5.md)
 Clase 6 | Clase 6
 Clase 7 | Clase 7
 Clase 8 | Clase 8
