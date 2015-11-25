@@ -1,0 +1,107 @@
+   // TANQUE OBJETO Y METODOS     
+     
+      var tanque = function() {
+         this.capacidad = "40 litres";
+         this.dimensiones = "51 x 25.5 x 30.5";
+         this.color = "gris color";
+         this.nivelAguaMaximo = "29cm";
+         
+         this.agua = 0;
+         this.peces = [];
+         this.desguace = function () {
+            console.log("vacianado agua");
+            this.agua = 40;
+         }
+         
+         this.anadirAgua = function(litros) {
+            this.agua = this.agua + litros;
+               if (this.agua > 40) {
+                  this.desguace();
+              }
+         }
+         this.quitarAgua = function(litros) {
+            this.agua = this.agua - litros;
+         }
+         this.anadirPez = function(nombre,clase) {
+            var newFish = [];
+            newFish.push(nombre);
+            newFish.push(clase);
+            this.peces.push(newFish);
+         }
+         
+         this.retirarPez = function(nombre) {
+            for (i = 0; i < this.peces.length; i++) {
+               if (nombre == this.peces[i][0]) {
+                  this.peces.splice(i,1);
+                  console.log(nombre + " ha sido retirado del tanque");
+                  return;
+               }
+            }
+            console.log("Este pez no existe");
+         }
+      }
+
+
+// CAMA OBJETO Y METODOS 
+
+var cama = function() {
+   this.capacidad = "10 litros";
+   this.dimensiones = "51 x 25.5 x 10";
+   this.color = "rojo";
+   this.nivelAguaMaximo = "5cm";
+   this.sustrato = "piedra volcanica";
+   
+   this.agua = 0;
+   this.plantas = [];
+   this.desguace = function() {
+      console.log("vaciando agua");
+      this.agua = 10;
+   }
+   
+   this.anadirAgua = function(litros) {
+      this.agua = this.agua + litros;
+         if (this.agua = 10) {
+            this.desguace();
+        }
+   }
+   this.quitarAgua = function(litros) {
+      this.agua = this.agua - litros;
+   }
+   this.anadirPlanta = function(nombre,clase) {
+      var newPlant = [];
+      newPlant.push(nombre);
+      newPlant.push(clase);
+      this.plantas.push(newPlant);
+   }
+   
+   this.retirarPlanta = function(nombre) {
+       for (i = 0; i < this.plantas.length; i++) {
+         if (nombre == this.plantas[i][0]) {
+            this.plantas.splice(i,1);
+            console.log(nombre + " ha sido retirado del tanque");
+            return;
+         }
+      }
+      console.log("Este planta no existe");
+   }
+}
+
+
+// PRUEBAS
+
+var newTank = new tanque();
+newTank;
+newTank.anadirAgua(30);
+newTank.agua;
+newTank.quitarAgua(10);
+newTank.agua;
+newTank.anadirAgua(30);
+newTank.agua;
+newTank.anadirPez("Goldie","Goldfish");
+newTank.anadirPez("Marco","koi");
+newTank.anadirPez("Bruce","tiburon");
+newTank.peces;
+newTank.retirarPez("Marco");
+newTank.retirarPez("Elvis");
+newTank.peces;
+
