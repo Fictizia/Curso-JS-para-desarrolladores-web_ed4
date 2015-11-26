@@ -43,7 +43,7 @@
 
                     console.log('Total de agua que sale: '+tanque.restoAgua +' litros.');
                 }    
-            }else if(tanque.capacidad === tanque.capacidad){
+            }else if(tanque.capacidad === tanque.aguaTanque){
                 console.log('El tanque está óptimo.');  
             }
         }
