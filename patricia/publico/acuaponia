@@ -1,0 +1,54 @@
+
+    var tanque = {
+    // propiedades
+    capacidad : 40,
+    aguaTanque: 0,
+    litroDeseados: 40,
+    restoAgua: 0,
+    color : 'gris',
+    nivelMaxAgua :29,
+    largo : 51,
+    ancho : 25.5,
+    alto : 30.5,
+
+
+    // métodos
+    sistema: {
+        dimensiones : function(largo,ancho,alto){
+            var tamanio = largo+'cm x '+ancho+' de ancho x '+alto+' de alto';
+        },
+        flujoAgua : function(litros){
+            var totalAgua  = tanque.aguaTanque  + litros;
+
+            if(tanque.aguaTanque != tanque.capacidad ){
+                if(totalAgua <= tanque.litroDeseados){
+                   
+                    var sumaAgua = totalAgua + tanque.aguaTanque;
+                    
+                    console.log('Se han llenado '+litros +' litros de agua.');
+                    
+                    console.log('Total de agua en tanque '+sumaAgua+' litros.');
+
+                }else if(totalAgua >= tanque.litroDeseados ){
+
+                    var entraAgua = (totalAgua+tanque.litroDeseados) - totalAgua ;
+
+                    totalAgua = entraAgua + tanque.aguaTanque;
+
+                    tanque.restoAgua = litros - entraAgua;
+
+                    console.log('Se han llenado: '+ entraAgua+' litros de agua.');
+
+                    console.log('Total de agua en tanque: '+totalAgua+' litros.');
+
+                    console.log('Total de agua que sale: '+tanque.restoAgua +' litros.');
+                }    
+            }else if(tanque.capacidad === tanque.capacidad){
+                console.log('El tanque está óptimo.');  
+            }
+        }
+    }
+}
+
+
+//  tanque.sistema.flujoAgua(50);
