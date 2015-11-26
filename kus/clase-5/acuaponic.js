@@ -22,9 +22,29 @@ var Tanque = function() {
   this.alto = 30.5;
   this.color = "Gris Claro";
   this.nivelAguaMaximo = 29; // cm
+  this.litrosAgua = 0;
 
   this.dimensiones = function() {
     this.dimensiones =  this.fondo + ' cm x ' + this.ancho + ' cm de ancho x ' + this.alto + ' cm de alto';
+  };
+
+  this.anadirAgua = function(litros) {
+    this.litrosAgua += litros;
+    this.comprobarNivel();
+  };
+
+  this.quitarAgua = function(litros) {
+    this.litrosAgua -= litros;
+  };
+
+  this.comprobarNivel = function() {
+    if (this.litrosAgua > this.nivelAguaMaximo) {
+      this.desaguar(this.nivelAguaMaximo - this.litrosAgua);
+    }
+  };
+
+  this.desaguar = function(litros) {
+    this.litrosAgua -= Litros;
   };
 }
 
@@ -36,9 +56,28 @@ var Cama = function() {
   this.ancho = 25.5;
   this.alto = 10;
   this.sustrato = "Piedra volcánica";
+  this.litrosAgua = 0;
 
   this.dimensiones = function() {
     this.dimensiones = this.fondo + ' cm x ' + this.ancho + ' cm de ancho x ' + this.alto + ' cm de alto';
   };
 
+  this.anadirAgua = function(litros) {
+    this.litrosAgua += litros;
+    this.comprobarNivel();
+  };
+
+  this.quitarAgua = function(litros) {
+    this.litrosAgua -= litros;
+  };
+
+  this.comprobarNivel = function() {
+    if (this.litrosAgua > this.nivelAguaMaximo) {
+      this.desaguar(this.nivelAguaMaximo - this.litrosAgua);
+    }
+  };
+
+  this.desaguar = function(litros) {
+    this.litrosAgua -= Litros;
+  };
 }
