@@ -36,7 +36,7 @@ var Tanque = function() {
   };
 
   this.quitarAgua = function(litros) {
-    this.litrosAgua -= litros;
+    this.litrosAgua = this.litrosAgua - litros;
   };
 
   this.comprobarNivel = function() {
@@ -46,7 +46,8 @@ var Tanque = function() {
   };
 
   this.desaguar = function(litros) {
-    this.litrosAgua -= Litros;
+    this.litrosAgua = this.litrosAgua - litros;
+    console.log('Desaguados ' + litros + ' agua');
   };
 
   this.agregarPeces = function(pezObj) {
@@ -55,7 +56,7 @@ var Tanque = function() {
 
   this.quitarPeces = function(pez) {
     if (this.peces[pez]) {
-      this.pecesRetirados.push(this.peces.slice(this.peces.indexOf(pez), 1));
+      this.pecesRetirados.push(this.peces.splice(this.peces.indexOf(pez), 1));
     }
   };
 }
