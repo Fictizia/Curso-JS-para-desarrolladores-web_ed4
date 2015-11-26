@@ -23,6 +23,8 @@ var Tanque = function() {
   this.color = "Gris Claro";
   this.nivelAguaMaximo = 29; // cm
   this.litrosAgua = 0;
+  this.peces = [];
+  this.pecesRetirados = [];
 
   this.dimensiones = function() {
     this.dimensiones =  this.fondo + ' cm x ' + this.ancho + ' cm de ancho x ' + this.alto + ' cm de alto';
@@ -45,6 +47,16 @@ var Tanque = function() {
 
   this.desaguar = function(litros) {
     this.litrosAgua -= Litros;
+  };
+
+  this.agregarPeces = function(pezObj) {
+    this.peces.push(pezObj);
+  };
+
+  this.quitarPeces = function(pez) {
+    if (this.peces[pez]) {
+      this.pecesRetirados.push(this.peces.slice(this.peces.indexOf(pez), 1));
+    }
   };
 }
 
