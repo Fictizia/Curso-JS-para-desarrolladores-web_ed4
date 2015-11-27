@@ -94,7 +94,7 @@ Nota: No usar herencia
     acuApp["tanque principal"] = new acuApp.constructorTanque(40, "Litros", 30.5, 25.5, 51, "Cm", "Gris Claro", 2);
     acuApp["cama principal"] = new acuApp.constructorCama(10, "Litros", 10, 25.5, 51, "Cm", "Rojo", 5, "Piedra volcánica");
 ```
-```
+
 
 
 2 - El siguiente paso en nuestra fabrica será añadir los métodos y propiedades que nos permitan añadir y controlar el agua
