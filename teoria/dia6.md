@@ -345,7 +345,7 @@ ref.orderByKey().startAt("b").endAt("b~").on("child_added", function(snapshot) {
 - [Ejemplo en jsfiddle](http://jsfiddle.net/firebase/a221m6pb/embedded/result,js,css/)
 
 
-** Reto Finde**
+**Reto Finde**
 
 Ejercicio Opcional - Crear una función que nos permita logearnos usando como red social GitHub y Firebase para gestionar la petición.
 
