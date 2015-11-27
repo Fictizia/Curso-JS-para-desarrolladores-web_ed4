@@ -344,3 +344,18 @@ ref.orderByKey().startAt("b").endAt("b~").on("child_added", function(snapshot) {
 - [User Auth](https://www.firebase.com/docs/web/guide/user-auth.html)
 - [Ejemplo en jsfiddle](http://jsfiddle.net/firebase/a221m6pb/embedded/result,js,css/)
 
+
+** Reto Finde**
+
+Ejercicio Opcional - Crear una función que nos permita logearnos usando como red social GitHub y Firebase para gestionar la petición.
+
+- Objetivos Opcionales:
+  - Subir los datos proporcionados por Github a nuestra base de datos.
+  - Incluir parte de los datos como el avatar y el nombre del usuario en el html 
+
+- Documentación:
+	- [GitHub User Authentication](https://www.firebase.com/docs/web/guide/login/github.html)
+
+```javascript
+	// Tu solución
+```
