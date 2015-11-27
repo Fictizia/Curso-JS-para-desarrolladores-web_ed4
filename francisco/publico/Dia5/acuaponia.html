@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript">
+            /*
+            1 - (Usando Constructores). Vamos a instalar un sistema acuapónico en una granja. Nuestro primer paso será definir el equipamiento. 
+                Necesitaremos al menos dos constructores. Uno para el tanque de los peces y otro para la cama (recipiente para vegetales).
+
+                Características Tanque:
+                
+                capacidad: 40 Litros
+                dimensiones: 51 cm x 25.5 de ancho x 30.5 de alto
+                color: Gris Claro
+                Nivel agua Máximo: 29 cm
+                
+                Características Cama:
+                
+                capacidad: 10 Litros
+                dimensiones: 51 cm x 25.5 de ancho x 10 de alto
+                color: Rojo
+                Nivel agua Máximo: 5 cm
+                Sustrato: Piedra volcánica
+                
+            2 - El siguiente paso en nuestra fabrica será añadir los métodos y propiedades que nos permitan añadir y controlar el agua
+
+                Características del sistema:
+                
+                Métodos para añadir y quitar agua, incluyendo los litros deseados.
+                Comprobación del nivel agua para evitar desbordamientos.
+                En caso de desbordamiento debe activarse el desagüe para eliminar el exceso de agua.    
+                
+            3 - Con el sistema ya instalado... y todo el entorno acuático funcionando. Es hora de incluir los métodos para controlar a nuestros peces y plantas.
+
+                En el constructor de Camas:
+                
+                Añadir un nuevo método para agregar peces que permita definir nombre y clase
+                Agregar un nuevo método para retirar peces (sin perderlos)
+                
+                En el constructor de Tanques:
+                
+                Añadir un nuevo método para agregar plantas que permita definir nombre y clase
+                Agregar un nuevo método para retirar plantas (sin perderlas)
+            */
+            
+            var tanqueExp = { 
+                capacidad: 40,
+                dimensiones: "51 cm x 25.5 de ancho x 30.5 de alto",
+                color: "Gris Claro",
+                nivelMaximo: 29
+            }
+            
+            var camaExp = {
+                capacidad: 10,
+                dimensiones: "51 cm x 25.5 de ancho x 10 de alto",
+                color: "Rojo",
+                nivelMaximo: 5,
+                sustrato: "Piedra volcánica"
+            }
+            
+            var tanque = function(tanque) {
+                
+                this.cantidad = 0;
+                this.capacidad = tanque.capacidad;
+                this.dimensiones = tanque.dimensiones;
+                this.color = tanque.color;
+                this.nivelMaximo = tanque.nivelMaximo;
+                this.peces = [];
+                this.pecesFuera = [];
+                
+                this.anadirAgua = function(cantidad) {
+                    this.cantidad += cantidad;
+                    if(desbordaAgua()) {
+                       desagueAgua();
+                    }
+                }
+                
+                this.quitarAgua = function(cantidad) {
+                    if(!faltaDeAgua()) {
+                        this.cantidad -= cantidad;
+                    } 
+                }
+                
+                this.anadirPez = function (nombre, clase) {
+                    this.peces.push({ nombre: nombre, clase: clase })
+                }
+                
+                this.retirarPez = function (nombre) {
+                    var position = encuentraPez(nombre);
+                    if(position == -1) {
+                        console.log("Pez no encontrado");
+                    } else {
+                        var pez = this.peces.splice(position, 1);
+                        this.pecesFuera.push(pez);
+                    }
+                }
+                
+                function desbordaAgua() {
+                    if(this.cantidad + cantidad > this.capacidad) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                function faltaDeAgua(cantidad) {
+                    if(this.cantidad - cantidad < 0) {
+                        console.log("No hay agua sufuciente");
+                    }
+                }
+                
+                function desagueAgua() {
+                    this.quitarAgua(this.cantidad - this.capacidad);
+                }
+                
+                function encuentraPez(nombre) {
+                    for(var i = 0 ; i < this.peces.length ; i++ ) {
+                        if(this.peces[i] == nombre) {
+                            return i;    
+                        }
+                    }
+                    return -1;
+                }
+            }
+            
+            var cama = function(cama) {
+                
+                this.cantidad = 0;
+                this.capacidad = cama.capacidad;
+                this.dimensiones = cama.dimensiones;
+                this.color = cama.color;
+                this.nivelMaximo = cama.nivelMaximo;
+                this.sustrato = cama.sustrato;
+                this.planta = [];
+                this.plantaFuera = [];
+                
+                this.anadirAgua = function(cantidad) {
+                    this.cantidad += cantidad;
+                    if(desbordaAgua()) {
+                       desagueAgua();
+                    }
+                }
+                
+                this.quitarAgua = function(cantidad) {
+                    if(!faltaDeAgua()) {
+                        this.cantidad -= cantidad;
+                    } 
+                }
+                
+                this.anadirPlanta = function (nombre, clase) {
+                    this.planta.push({ nombre: nombre, clase: clase })
+                }
+                
+                this.retirarPlanta = function (nombre) {
+                    var position = encuentraPlanta(nombre);
+                    if(position == -1) {
+                        console.log("Pez no encontrado");
+                    } else {
+                        var planta = this.peces.splice(position, 1);
+                        this.plantaFuera.push(planta);
+                    }
+                }
+                
+                function desbordaAgua() {
+                    if(this.cantidad + cantidad > this.capacidad) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                function faltaDeAgua(cantidad) {
+                    if(this.cantidad - cantidad < 0) {
+                        console.log("No hay agua sufuciente");
+                    }
+                }
+                
+                function desagueAgua() {
+                    this.quitarAgua(this.cantidad - this.capacidad);
+                }
+                
+                function encuentraPlanta(nombre) {
+                    for(var i = 0 ; i < this.planta.length ; i++ ) {
+                        if(this.planta[i] == nombre) {
+                            return i;    
+                        }
+                    }
+                    return -1;
+                }
+            }
+        </script>
+        
+    </head>
+    <body>
+        
+    </body>
+</html>
