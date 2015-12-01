@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana;
+    font-size: 16px;
+    color: #FFF;
+}
+
+div.form, .data-item {
+    width: 400px;
+    background: #303c4b;
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+input, label {
+    display: inline-block;
+    height: 40px;
+}
+
+input {
+    
+    width: 50%;
+    border-radius: 6px;
+    border: 1px solid #CCC;
+}
+
+label {
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.message {
+    width: 400px;
+    background: red;
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 15px;
+}

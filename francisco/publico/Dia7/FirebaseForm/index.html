@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="form">
+            <form action="javascript:Firebase.addUser" method="POST">
+                <label for="nombre">Nombre</label><input type="text" id="name" name="name" />
+                <label for="apellido">Apellidos</label><input type="text" id="surname" name="surname" />
+                <label for="email">Email</label><input type="text" name="email" name="email" />
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+        <div id="data">
+            <div class="data-item">aa</div>
+        </div>
+        <div class="message">
+            
+        </div>
+    </body>
+</html>
