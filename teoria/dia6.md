@@ -338,13 +338,6 @@ ref.orderByKey().startAt("b").endAt("b~").on("child_added", function(snapshot) {
 - [Ajustes de seguridad](https://www.firebase.com/docs/security/guide/securing-data.html)
 
 
-
-**Autorización**
-
-- [User Auth](https://www.firebase.com/docs/web/guide/user-auth.html)
-- [Ejemplo en jsfiddle](http://jsfiddle.net/firebase/a221m6pb/embedded/result,js,css/)
-
-
 **Reto Finde**
 
 Ejercicio Opcional - Crear una función que nos permita logearnos usando como red social GitHub y Firebase para gestionar la petición.
