@@ -1,0 +1,32 @@
+* Dia 6 *
+-----------------------
+FireBase
+
+- Se utiliza para mas plataformas
+- Es una base de datos en tiempo real. Tiene una arquitectura web sockets.
+- Rapida pero no destinada a app muy grandes
+- Puede trabajr offline.
+- Nos ofrece hosting.
+- Aporta una capa de seguridad para la aplicacion
+- Gestion de sesionesde usuarios
+- Sesiones a traves de redes sociales
+- Creamos eventos a traves del on.
+
+Guardar Datos
+-----------------
+Set
+Update
+Push
+
+.child: crear un hijo
+
+Diferencia entre set y push: 
+- Push crea un objeto pero le da un id unico.
+- Set para usuarios que se repiten. EL set sustituye al objeto completo.
+- Los eventos se pueden solapar.
+
+La mecanica con firebase es con eventos.
+
+- El orden de los datos es el orden de llegada
+
+
