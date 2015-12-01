@@ -1,0 +1,94 @@
+* Resumen *
+-----------------------
+
+* Avanzadilla y explicación del Cajero Automático *
+
+- Para caracteres especiales o espacios en blanco de propiedades en un objeto utilizamos corchetes. Objeto["Propiedad especial"] = X;
+- Utilizamos el || también para inicializar variables. La comparación se hace con undefined. Se vio con parametros opcionales en funciones.
+    Objeto["Propiedad especial"] = Objeto["Propiedad especial"] || 0; Si es igual a undefined se le asina el valor 0.
+- Cajero automático. Podemos poner las funciones fuera, pero es conveniente incluirlas dentro.
+- los métodos son las funciones pero dentro de un objeto
+- Patron Lazy definition:
+    volumen: function() {
+        this.volumen = "";
+        // La segunda vez que la llama habrá cambiado su tipo y sera una propiedad.
+    }
+- this asume el valor del padre salvo excepciones.
+- Con las funciones autoejecutadas mi código se hace privado.
+- querySelector en document que pertenece al estandar HTML5 funciona igual que el selector de jQuery.
+- Es una funcion autoejecutable podemos mandar como parametro window con idea de performance. Es mas facil que tener que acceder desde dentro.
+- Hay que procurar encapsular tu código. Evita que sea modificado por terceros.
+- La encapsulación previene de conflictos entre librerias y objetos.
+- Stuff in space.
+- IdiomaticJs: Patron para programar en Javascript.
+- Commitstrip
+- Todomvc. Firebase + Angular mejor que MEAN.
+
+* Resumen dia 3 o 4.
+
+- LA diferencia entre POO y objetos literales. Es que con objetos literales solo tendremos uno. En POO tendremos X objetos basados en esa clase. En POO tendremos un constructor.
+- Constructor de objetos es solamente una función.
+var coche = function(marca, cilindrada) {
+    this.marca = marca;
+    this.cilindrada = cilindrada;
+    this.detalles = function() {
+        ...
+    }
+}
+
+var coche = function(marca, cilindrada) {
+    this.marca = marca;
+    this.cilindrada = cilindrada;
+}
+
+coche.prototype.detalles = function() {
+    ...
+}
+
+- Herencia
+var coche = function() {
+    ...
+    this.detalles = function() {
+    ..
+    }
+}
+
+var furgon = function() {
+    ...
+    this.detallesTecnicos = function() {
+    
+    }
+}
+
+var miPickup = new coche(..);
+miPuckup.prototype = new furgon(..);
+
+miPickup.detalles();
+miPickup.prototype.detallesTecnicos();
+
+* No modificar librerias de terceros. Utilizar prototype.
+
+* publico y privado
+Dentro de un objeto this será público y la declaracion de función o var será privado.
+
+
+
+***** Dia 5 POO Avanzada *****
+------------------------------
+
+- Object.getOwnPropertyNames(objeto).sort: Devuelve nombre.
+- For..in modificación de for pero pensado para objetos.For
+- Object es el objeto nativo para javascript como Array o Number.
+- El valor de this se captura con una variable llamada val o self.
+- Call, Apply, Bind son modificadores de contexto. Solo lo cambiamos en el caso excepcional que nos atañe.
+- Call y Apply solo se diferencia en la sintaxis.
+- Bind retorna una función con la modificación por si hay que utilizarlo varias vces
+- HasOwnProperty comprueba si una propiedad o un metodo esta en un objeto
+
+- Object.create crea un clon de un objeto. Create no es lo mismo que igularalo. COn clone isPrototypeOF daria true.
+- .contrcutor
+- .toLocaleString("es-ES"); Devuelve la nomenclatura en decimales
+
+
+
+

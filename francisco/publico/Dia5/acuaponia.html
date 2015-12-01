@@ -41,6 +41,24 @@
                 
                 Añadir un nuevo método para agregar plantas que permita definir nombre y clase
                 Agregar un nuevo método para retirar plantas (sin perderlas)
+                
+            4 - Con todo el sistema en funcionamiento es hora de realizar mediciones para garantizar el correcto desarrollo. Necesitamos mejorar el método de agregar agua para poder incluir como parámetros opcionales las propiedades del agua.
+
+                Propiedades del agua:
+                
+                Nitratos(NO3 mg/l)
+                Nitritos (NO2 mg/l)
+                Dureza Sales (GH)
+                Carbonatos (KH)
+                Ph (Ph)
+                Cloro (CL2 mg/l)
+                
+                Ademas... queremos saber el estados de cada tanque y cama usando un método que nos facilite toda la información por consola. Incluyendo:
+                
+                Estado del agua incluyendo cantidad y parámetros
+                total de peces y total por tipo (solo en tanques)
+                total de hortalizas y total por tipo (solo en camas)
+                Nota: For... in te resultará de gran utilidad.
             */
             
             var tanqueExp = { 
@@ -58,7 +76,7 @@
                 sustrato: "Piedra volcánica"
             }
             
-            var tanque = function(tanque) {
+            var Tanque = function(tanque) {
                 
                 this.cantidad = 0;
                 this.capacidad = tanque.capacidad;
@@ -67,9 +85,11 @@
                 this.nivelMaximo = tanque.nivelMaximo;
                 this.peces = [];
                 this.pecesFuera = [];
+                this.cantidadNitrato = 0;
                 
-                this.anadirAgua = function(cantidad) {
+                this.anadirAgua = function(cantidad, cantidadNitrato) {
                     this.cantidad += cantidad;
+                    this.cantidadNitrato = cantidadNitrato || 0;
                     if(desbordaAgua()) {
                        desagueAgua();
                     }
@@ -96,7 +116,7 @@
                 }
                 
                 function desbordaAgua() {
-                    if(this.cantidad + cantidad > this.capacidad) {
+                    if(this.cantidad > this.capacidad) {
                         return true;
                     }
                     return false;
@@ -120,9 +140,40 @@
                     }
                     return -1;
                 }
+                
+                function devuelveNumClase() {
+                    var contador = [];
+                    for(var pez in this.peces) {
+                        
+                    }
+                }
+                
+                function calculaClasePez(pez, cantidad) {
+                    var position = -1;
+                    for(var i = 0; i < contador.length; i++) {
+                        if(contador[i].clase == pez.clase)
+                    }
+                    if(position == -1) {
+                        contador.push({ clase: pez.clase, cantidad: 1 });
+                    } else {
+                        
+                    }
+                }
+                
+                function toString() {
+                    console.log("==========================");
+                    console.log("===== Estado del Agua ====");
+                    console.log("==========================");
+                    console.log("Agua Disponible: " + this.cantidad + " L");
+                    console.log("Cantidad Nitrato: " + this.cantidadNitrato + "mg/l");
+                    console.log("==========================");
+                    console.log("=== Estado de los peces ==");
+                    console.log("==========================");
+                    console.log("Tolal Plantas: " + );
+                }
             }
             
-            var cama = function(cama) {
+            var Cama = function(cama) {
                 
                 this.cantidad = 0;
                 this.capacidad = cama.capacidad;
@@ -132,8 +183,10 @@
                 this.sustrato = cama.sustrato;
                 this.planta = [];
                 this.plantaFuera = [];
+                this.cantidadNitrato = 0;
                 
                 this.anadirAgua = function(cantidad) {
+                    this.cantidadNitrato = cantidadNitrato || 0;
                     this.cantidad += cantidad;
                     if(desbordaAgua()) {
                        desagueAgua();
@@ -153,7 +206,7 @@
                 this.retirarPlanta = function (nombre) {
                     var position = encuentraPlanta(nombre);
                     if(position == -1) {
-                        console.log("Pez no encontrado");
+                        console.log("Planta no encontrado");
                     } else {
                         var planta = this.peces.splice(position, 1);
                         this.plantaFuera.push(planta);
@@ -161,7 +214,7 @@
                 }
                 
                 function desbordaAgua() {
-                    if(this.cantidad + cantidad > this.capacidad) {
+                    if(this.cantidad > this.capacidad) {
                         return true;
                     }
                     return false;
@@ -184,6 +237,18 @@
                         }
                     }
                     return -1;
+                }
+                
+                function toString() {
+                    console.log("==========================");
+                    console.log("===== Estado del Agua ====");
+                    console.log("==========================");
+                    console.log("Agua Disponible: " + this.Cantidad + " L");
+                    console.log("Cantidad Nitrato: " + this.cantidadNitrato + " mg/l");
+                    console.log("==========================");
+                    console.log("= Estado de las plantas ==");
+                    console.log("==========================");
+                    console.log("Tolal Plantas: " + this.plantas.length);
                 }
             }
         </script>
