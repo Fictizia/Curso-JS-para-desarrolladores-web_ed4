@@ -20,6 +20,9 @@
     flex: 0 100px;
     padding-right: 10px;
   }
+  .control input {
+    flex: 1;
+  }
   button {
     width: 100%;
     background: #0F81D6;
@@ -30,33 +33,46 @@
     border-radius: 4px;
   }
   input { padding: 5px; }
-  .users {
-    margin-left: 40px;
-    padding-left: 39px;
-    border-left: 1px solid #ccc;
-    float: left;
+  .wrapper {
+    display: flex;
+    margin: auto;
+    padding-top: 60px;
+    max-width: 800px;
+    justify-content: space-between;
   }
+  [class*="col-"] {
+    flex: 0 45%;
+  }
+  .col-right {
+    border-left: 1px solid #ccc;
+    padding-left: 40px;
+  }
+  .users-list { padding: 0; }
+  .users-heading { font-weight: bold; font-size: 1.13em; }
   </style>
   <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
 </head>
 <body>
-  <form action="" id="register">
-    <div class="control">
-      <label for="name">Nombre</label>
-      <input type="text" id="name" name="name">
+  <div class="wrapper">
+    <form action="" id="register" class="col-left">
+      <h1>Registro de usuario</h1>
+      <div class="control">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name">
+      </div>
+
+      <div class="control">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" name="email">
+      </div>
+
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <div class="users col-right">
+      <p class="users-heading">Cargando usuarios…</p>
+      <ul class="users-list" hidden></ul>
     </div>
-
-    <div class="control">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="your@email.com" name="email">
-    </div>
-
-    <button type="submit">Registrarse</button>
-  </form>
-
-  <div class="users">
-    <p class="users-heading">Cargando usuarios…</p>
-    <ul class="users-list" hidden></ul>
   </div>
 
   <script src="firebase-register.js"></script>
