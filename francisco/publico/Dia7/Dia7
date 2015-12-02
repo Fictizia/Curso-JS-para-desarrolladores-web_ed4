@@ -1,0 +1,19 @@
+Dia 7
+------------------------------
+- npm install -g firebase-tools
+(g el global)
+- firebase init
+(hemos de estar en nuestra carpeta)
+
+Apis
+------------------
+Servidores que sirven datos.
+Https: SL habilitado
+Metodologia CRUD: Post, Get, Put y Delete
+A traves de Http. Que ha ido evolucionando con el paso del tiempo.
+HttpRequest. Cabezera cuerpo.
+
+Ajax
+------------------
+JsonP: Se esta extinguiendo.
+Se trabaja con Corso o Proxys
