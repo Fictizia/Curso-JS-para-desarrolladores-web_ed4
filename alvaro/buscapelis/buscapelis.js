@@ -1,4 +1,4 @@
-var favMovies = new Firebase('https://moviefire.firebaseio.com/movies');
+var favMovies = new Firebase('https://buscapelis.firebaseio.com/');
 
 function saveToList(event) {
     if (event.which == 13 || event.keyCode == 13) { // as the user presses the enter key, we will attempt to save the data
