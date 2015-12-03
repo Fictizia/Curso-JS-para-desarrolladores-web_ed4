@@ -6,5 +6,25 @@
 </head>
 <body>
 <script src="//cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+<script type="text/javascript" src="">
+    
+    var formulario = new Firebase("https://radiant-inferno-2568.firebaseio.com/");
+function nuevoAsistente (nombre, apellido, email) {
+ formulario.orderByChild(email).once('value', function(snap) {
+	 	var yaExiste = snap.val();
+		if (yaExiste !== null) {
+			console.log("Ojo, el email " +email+ "y a existe. Pon otro, anda.");
+		}
+		else {
+			 formulario.child("Asistentes").push({
+			    nombre: nombre,
+			    apelldo: apellido,
+			    email: email
+		});
+
+ });
+};
+    
+</script>
 </body>
 </html>
