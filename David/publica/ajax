@@ -1,0 +1,25 @@
+function ajaxRequest(city) {   
+
+    var xmlHttp = new XMLHttpRequest();
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=32c4996e9a641c05c600040093f3e272";
+
+    xmlHttp.onreadystatechange = function() {
+
+         if(xmlHttp.readyState === 4){
+             if (xmlHttp.status === 200) {
+                 var result = JSON.parse(xmlHttp.responseText);
+                 console.info(result);
+                 document.body.innerHTML += "In " + city + " the weather is " + result.weather[0].description + " and the temp is " + result.main.temp + " degrees celcius" + "<br>";
+              } else if (xmlHttp.status === 404) {
+                    console.info(JSON.parse(xmlHttp.responseText));
+                   }   
+                 }
+              };
+                xmlHttp.open("GET", url , true);
+                xmlHttp.send();
+            }
+            
+
+ajaxRequest("madrid");
+ajaxRequest("valencia");
+ajaxRequest("Barcelona");

@@ -1,0 +1,48 @@
+
+
+<body>
+<script src="//cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+<input type="text" length="20" placeholder="nombre" id="nombre">
+<input type="text" length="20" placeholder="apellido" id="apellido">
+<input type="text" length="20" placeholder="email" id="email">
+<button type="button" id="signup">Sign Up</button>
+<p>Lista de Gente Apuntado</p>
+<p id = "genteapuntado"></p>
+
+</body>
+
+
+
+var ref = new Firebase("https://test-david-fisher.firebaseio.com");
+var lista = ref.child("lista");
+
+var nombre = document.getElementById("nombre");
+var apellido = document.getElementById("apellido");
+var email = document.getElementById("email");
+var signUp = document.getElementById("signup");
+var genteApuntado = document.getElementById("genteapuntado");
+
+
+
+signUp.onclick = function() {
+   
+   lista.orderByChild("email").on("value",function (snapshot) {
+      console.log(snapshot.val().email);
+   });
+
+   lista.child(nombre.value + apellido.value).set({
+         nombre: nombre.value,
+         apellido: apellido.value,
+         email: email.value,
+         });
+      nombre.value = "";
+      apellido.value = "";
+      email.value = "";
+};
+
+
+lista.on("child_added", function(snapshot) {
+   var detalles = snapshot.val();
+   genteApuntado.innerHTML += detalles.nombre + " " + detalles.apellido + " (" + detalles.email + ")";
+});
