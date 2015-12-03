@@ -9,6 +9,13 @@ function ajaxRequest(url) {
   // 3 interactive
   // 4 complete
 
+  // Tipos de errores
+  // 1xx Informativas
+  // 2xx Peticiones Correctas
+  // 3xx Redirecciones
+  // 4xx Errores Cliente
+  // 5xx Errores Servidor
+
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
       console.info(JSON.parse(xmlHttp.responseText));
