@@ -1,4 +1,4 @@
-var favMovies = new Firebase('https://fictiziajs.firebaseio.com/moviefire');
+var favMovies = new Firebase('https://fictiziajs.firebaseio.com/moviefire/');
 
 function saveToList(event) {
     if (event.which == 13 || event.keyCode == 13) { // as the user presses the enter key, we will attempt to save the data
@@ -54,7 +54,7 @@ function del(key, mvName) {
 }
 
 function buildEndPoint (key) {
-	return new Firebase('https://moviefire.firebaseio.com/movies/' + key);
+	return new Firebase('https://fictiziajs.firebaseio.com/moviefire/' + key);
 }
 
 // this will get fired on inital load as well as when ever there is a change in the data
