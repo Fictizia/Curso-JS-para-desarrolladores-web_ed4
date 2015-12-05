@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+src="http://maps.googleapis.com/maps/api/js">
+</script>
+
+<script>
+
+var map;
+var stations = [];
+
+
+function initialize() {
+	var latlng = new google.maps.LatLng(41.3873,2.1762);
+	var myOptions = {
+		zoom: 13,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
+}
+
+
+ function peticionAjax() {
+
+    var xmlHttp = new XMLHttpRequest();
+    url = "https://crossorigin.me/http://barcelonaapi.marcpous.com/bicing/stations.json";
+    xmlHttp.onreadystatechange = function() {
+
+        if(xmlHttp.readyState === 4){
+            if (xmlHttp.status === 200) {
+                var result = JSON.parse(xmlHttp.responseText);
+                console.info(result);
+                for (var i = 0; i<result.data.bici.length; i++) {
+                    stations.push([result.data.bici[i].lat, result.data.bici[i].lon]);
+                    }
+             } else if (xmlHttp.status === 404) {
+                            console.info(JSON.parse(xmlHttp.responseText));
+                    }   
+             }
+        };
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send();
+}
+
+
+function addStation() {
+	for (var i = 0; i <= stations.length; i++) {
+		var marker = new google.maps.Marker({
+            position:  new google.maps.LatLng(stations[i][0], stations[i][1]),
+        });
+        marker.setMap(map);
+	}
+}
+
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+peticionAjax();
+window.setTimeout(addStation, 1000);
+
+
+
+
+
+
+
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:380px;"></div>
+</body>
+</html>
