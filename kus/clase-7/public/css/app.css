@@ -1,0 +1,24 @@
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+.app-header h1 { margin: 0; flex: 1 0 auto; }
+.user-profile:not([hidden]) {
+  display: flex;
+  align-items: center;
+}
+.user-name { margin-right: 10px; text-align: right; }
+.user-profile img { border-radius: 50%; width: 30px; height: 30px; }
+.list-group-item {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+}
+.list-group-item .text-muted {
+  padding-left: 10px;
+  flex: 1;
+}
+.octicon { font-size: 22px; float: left; margin-right: -22px; }
