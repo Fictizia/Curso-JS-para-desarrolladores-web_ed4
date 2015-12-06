@@ -6,6 +6,7 @@
 
   // elements
   var btnGithub = document.querySelector('#btn-github');
+  var btnLogout = document.querySelector('#btn-logout');
   var form = document.querySelector('#form-register');
   var list = document.querySelector('.list-group');
   var alert = document.querySelector('#alert');
@@ -15,7 +16,10 @@
   // event listeners
   form.addEventListener('submit', formSubmit);
   btnGithub.addEventListener('click', loginWithGithub);
+  btnLogout.addEventListener('click', logout);
+
   usersRef.on('child_added', printUserList);
+  usersRef.onAuth(authDataCallback);
 
   function formSubmit(e) {
     e.preventDefault();
@@ -39,20 +43,36 @@
           url: authData.github.cachedUserProfile.html_url
         };
         register(user);
-        displayUserProfile(user);
       }
     });
   }
 
+  function logout() {
+    usersRef.unauth();
+  }
+
+  function authDataCallback(authData) {
+    if (authData) {
+      displayUserProfile(authData);
+      displayUserList();
+    } else {
+      hideUserProfile();
+      hideUserList();
+    }
+  }
+
   function displayUserProfile(user) {
     var userPicture = document.createElement('img');
-    userPicture.src = user.picture;
+    userPicture.src = user.github.profileImageURL;
     document.querySelector('.user-picture').appendChild(userPicture);
-
-    document.querySelector('.user-name').innerHTML = 'Hola ' + '<b>' + user.name + '</b>';
+    document.querySelector('.user-name').innerHTML = 'Hola ' + '<b>' + user.github.displayName + '</b>';
     userPicture.onload = function() {
       document.querySelector('.user-profile').removeAttribute('hidden');
     }
+  }
+
+  function hideUserProfile() {
+    document.querySelector('.user-profile').setAttribute('hidden', true);
   }
 
   function register(userData) {
@@ -93,6 +113,11 @@
   function displayUserList() {
     document.querySelector('#register').classList.add('hide');
     document.querySelector('#user-list').classList.remove('hide');
+  }
+
+  function hideUserList() {
+    document.querySelector('#register').classList.remove('hide');
+    document.querySelector('#user-list').classList.add('hide');
   }
 
   function printUserList(data) {
