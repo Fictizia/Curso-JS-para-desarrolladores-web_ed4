@@ -1,7 +1,7 @@
 (function(window) {
 
   // fb refs
-  var ref = new Firebase("https://fictiziajs.firebaseio.com/fb-ejemplos/escritura");
+  var ref = new Firebase("https://fictiziajs.firebaseio.com/fictiziapp");
   var usersRef = ref.child('users');
 
   // elements
