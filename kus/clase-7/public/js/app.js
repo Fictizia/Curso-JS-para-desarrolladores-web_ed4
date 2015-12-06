@@ -35,14 +35,7 @@
       if (error) {
         showAlert('error', error);
       } else {
-        console.log(authData);
-        var user = {
-          name: authData.github.displayName,
-          picture: authData.github.profileImageURL,
-          uid: authData.uid,
-          url: authData.github.cachedUserProfile.html_url
-        };
-        register(user);
+        register(authData);
       }
     });
   }
@@ -80,7 +73,7 @@
       usersRef.orderByChild('uid')
         .equalTo(userData.uid)
         .once('value', function(data) {
-          addUser(userData, data); // ToDo: dudas sobre el data...
+          addUser(userData, data);
         });
       return;
     }
@@ -99,15 +92,32 @@
     var userFound = data.val();
     if (userFound !== null) { // user exits
       alertType = 'info';
-      msg = '<strong>Hola ' + userData.name + '</strong> <br>¡Bienvenido de nuevo!';
+      msg = '<strong>Hola ' + getName(userData) + '</strong> <br>¡Bienvenido de nuevo!';
     } else { // add new user
-      msg = '<strong>Hola ' + userData.name + '</strong> <br>¡Bienvenido a FictiziApp!';
-      usersRef.push(userData);
+      msg = '<strong>Hola ' + getName(userData) + '</strong> <br>¡Bienvenido a FictiziApp!';
+      if (userData.uid) { // github users
+        usersRef.child(userData.uid).set({
+          name: userData.github.displayName,
+          picture: userData.github.profileImageURL,
+          uid: userData.uid,
+          url: userData.github.cachedUserProfile.html_url
+        });
+      } else { // email users
+        usersRef.push(userData);
+      }
     }
 
     showAlert(alertType, msg);
     displayUserList();
     userLogged = true;
+  }
+
+  function getName(userData) {
+    var name = userData.name; // email user
+    if (userData.provider) { // github user
+      name = userData.github.displayName;
+    }
+    return name;
   }
 
   function displayUserList() {
@@ -169,8 +179,8 @@
   function showAlert(type, msg) {
     var classSuffix = type || 'success';
     alert.innerHTML = msg;
+    alert.className = 'alert'; // clears all previously added classes
     alert.classList.add('alert-' + classSuffix);
-    alert.classList.remove('hide');
   }
 
   function hideAlert() {
