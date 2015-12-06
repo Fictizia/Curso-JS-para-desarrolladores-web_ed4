@@ -10,6 +10,8 @@
   var list = document.querySelector('.list-group');
   var alert = document.querySelector('#alert');
 
+  var userLogged = false;
+
   // event listeners
   form.addEventListener('submit', formSubmit);
   btnGithub.addEventListener('click', loginWithGithub);
@@ -85,6 +87,7 @@
 
     showAlert(alertType, msg);
     displayUserList();
+    userLogged = true;
   }
 
   function displayUserList() {
@@ -123,8 +126,19 @@
       li.appendChild(img);
     }
 
-    list.appendChild(li);
-    list.removeAttribute('hidden');
+
+    if (userLogged) {
+      showAlert('warning', 'Tenemos a un nuevo usuario por aquí...');
+      li.classList.add('highlight');
+      list.insertBefore(li, list.childNodes[0]);
+      setTimeout(function() {
+        li.classList.remove('highlight');
+        hideAlert();
+      }, 5000);
+    } else {
+      list.appendChild(li);
+      list.removeAttribute('hidden');
+    }
   }
 
   function showAlert(type, msg) {
@@ -132,6 +146,10 @@
     alert.innerHTML = msg;
     alert.classList.add('alert-' + classSuffix);
     alert.classList.remove('hide');
+  }
+
+  function hideAlert() {
+    alert.classList.add('hide');
   }
 
 })(window);

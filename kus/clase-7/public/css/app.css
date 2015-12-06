@@ -16,7 +16,10 @@
   display: flex;
   align-items: center;
   min-height: 52px;
+  background: #fff;
+  transition: background 1s;
 }
+.highlight { background: #fcf8e3; }
 .list-group-item .text-muted {
   padding-left: 10px;
   flex: 1;
