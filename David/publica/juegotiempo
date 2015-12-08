@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<style>
+* {
+	font-family: verdana;
+	text-align: center;
+}
+
+p {
+	margin: 2% 10%;
+}
+
+button {
+	background: blue;
+	color: white;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+button:hover {
+	background: aquamarine;
+	color: DarkBlue;
+}
+
+button:disabled {
+	display: none;
+}
+
+input:disabled {
+	display:none;
+}
+
+#nextcity {
+	margin: 15px 0;
+}
+
+
+</style>
+</head>
+<body>
+    <div id ="title"><h1>Guess the weather Game</h1></div>
+    <div id ="rules"><p>How to play: Click the 'start game' button. You will recieve a world city. The objective is to
+        guess, what is the temperature right now in that city. Think about time zones, seasons, climates etc. Then enter your guess
+        and click 'guess'. You will recieve the real temperature and the difference between your guess. Click 'next' for the next city.
+        A full game involves 10 cities and your score is the total difference between all your guesses and the actual temperatures.
+        At the end of the game, enter your name to take a place on the high scores table. All temperatures are in degrees celcuis. Good luck.</p></div>
+    <div id ="startgame"> <button id="clickstart">Start Game</button></div>
+    <div id ="game">
+        <div id ="citydetails"></div>
+        <div><p id="enterguess"></p><input type="text" id="guessvalue"><button id="guessinput">Guess</button></div>
+        <div><button id="nextcity">Next</div>
+    </div>
+    <div id="messagearea"></div>
+    <div><input type="text" id="nameinput"><button id="scoreinput">Enter Name</button></div>
+    <div><h1>List of high scores</h1></div>
+    <div id="databasefield"></div>
+
+<script>
+
+
+var database = new Firebase("https://weather-game.firebaseio.com");
+var clickStart = document.getElementById("clickstart");  
+var cityDetails = document.getElementById("citydetails"); 
+var guessValue = document.getElementById("guessvalue"); 
+var guessInput = document.getElementById("guessinput");  
+var messageArea = document.getElementById("messagearea");  
+var nextCity = document.getElementById("nextcity");  
+var databaseField = document.getElementById("databasefield");  
+var nameInput = document.getElementById("nameinput");
+var scoreInput = document.getElementById("scoreinput");
+var enterGuess = document.getElementById("enterguess");
+
+
+var cities =  //NECESITO PONER ESTE EN UN ARCHIVO DE JSON SEPERADO
+    [
+        "Moscow,Russia"
+        ,"London,UK"
+        ,"St Petersburg,Russia"
+        ,"Berlin,Germany"
+        ,"Madrid,Spain"
+        ,"Rome,Italy"
+        ,"Kiev,Ukraine"
+        ,"Paris,France"
+        ,"Bucharest,Romania"
+        ,"Budapest,Hungary"
+        ,"Hamburg,Germany"
+        ,"Minsk,Belarus"
+        ,"Warsaw,Poland"
+        ,"Belgrade,Serbia"
+        ,"Vienna,Austria"
+        ,"Kharkov,Ukraine"
+        ,"Barcelona,Spain"
+        ,"Novosibirsk,Russia"
+        ,"Nizhny Novgorod,Russia"
+        ,"Milan,Italy"
+        ,"Havana,Cuba"
+        ,"Munich,Germany"
+        ,"Prague,Czech Republic"
+        ,"Samara,Russia"
+        ,"Omsk,Russia"
+        ,"Sofia,Bulgaria"
+        ,"Dnepropetrovsk,Ukraine"
+        ,"Kazan,Russia"
+        ,"Ufa,Russia"
+        ,"Guadalajara,Mexico"
+        ,"Donetsk ,Ukraine"
+        ,"Naples,Italy"
+        ,"Birmingham,UK"
+        ,"Hobart,Australia"
+        ,"Rostov-na-Donu,Russia"
+        ,"Odessa,Ukraine"
+        ,"Volgograd,Russia"
+        ,"Cologne,Germany"
+        ,"Turin,Italy"
+        ,"Ottowa,Canada"
+        ,"Winnipeg,Canada"
+        ,"Montreal,Canada"
+        ,"Zagreb,Croatia"
+        ,"Toronto,Canada"
+        ,"Lodz,Poland"
+        ,"Marseille,France"
+        ,"Riga,Latvia"
+        ,"Lvov,Ukraine"
+        ,"Athens,Greece"
+        ,"Salonika,Greece"
+        ,"Stockholm,Sweden"
+        ,"Krakow,Poland"
+        ,"Valencia,Spain"
+        ,"Amsterdam,Netherlands"
+        ,"Leeds,UK"
+        ,"Panama City,Panama"
+        ,"San Jose,Costa Rica"
+        ,"Sevilla,Spain"
+        ,"Palermo,Italy"
+        ,"Acapulco,Mexico"
+        ,"Tiajuana,Mexico"
+        ,"Genova,Italy"
+        ,"Mexico City,Mexico"
+        ,"Manaus,Brazil"
+        ,"Sydney,Australia"
+        ,"Auckland,New Zealand"
+        ,"Glasgow,UK"
+        ,"Wellington,New Zealand"
+        ,"Perth,Australia"
+        ,"Vladivostok,Russia"
+        ,"Zaragoza,Spain"
+        ,"Darwen,Australia"
+        ,"Rotterdam,Netherlands"
+        ,"Irkutsk,Russia"
+        ,"Dortmund,Germany"
+        ,"Stuttgart,Germany"
+        ,"Melbourne,Australia"
+        ,"Vilnius,Lithuania"
+        ,"Canberra,Australia"
+        ,"Santiago,Chile"
+        ,"Cuzco,Peru"
+        ,"Lisbon,Portugal"
+        ,"Helsinki,Finland"
+        ,"Malaga,Spain"
+        ,"Bremen,Germany"
+        ,"Sheffield,UK"
+        ,"Asuncion,Paraguay"
+        ,"Lima,Peru"
+        ,"Montevideo,Uruguay"
+        ,"Sao Paolo, Brazil"
+        ,"Rio de Janeiro, Brazil"
+        ,"Brasilia, Brazil"
+        ,"Buenos Aires,Argentina"
+        ,"Hannover,Germany"
+        ,"Caracas,Venezuela"
+        ,"Cali,Colombia"
+        ,"Oslo,Norway"
+        ,"Bogota,Colombia"
+        ,"Copenhagen,Denmark"
+        ,"Quito,Ecuador"
+        ,"Gibraltar"
+        ,"Lagos,Nigera"
+        ,"Cairo,Egypt"
+        ,"Johannesburg,South Africa"
+        ,"khartoum,Sudan"
+        ,"Dar es Salaam,Tanzania"
+        ,"Alexandria,Egypt"
+        ,"Casablanca,Morocco"
+        ,"Cape Town,South Africa"
+        ,"Nairobi,Kenya"
+        ,"Addis Ababa,Ethiopia"
+        ,"Dakar,Senegal"
+        ,"Tripoli,Libya"
+        ,"Rabat,Morocco"
+        ,"New York,USA"
+        ,"Los Angeles,USA"
+        ,"Chicago,USA"
+        ,"Detroit,USA"
+        ,"Las Vegas,USA"
+        ,"San Francisco,USA"
+        ,"Housten,USA"
+        ,"Boston,USA"
+        ,"Seattle,USA"
+        ,"New Orelans,USA"
+        ,"Honolulu,USA"
+        ,"Miami,USA"
+        ,"Port-au-Prince,Haiti"
+        ,"Kingston,Jamaica"
+        ,"Nassau,Bahamas"
+        ,"Tehran,Iran"
+        ,"Baghdad,Iraq"
+        ,"Riyadh,Saudi Arabia"
+        ,"Ankara,Turkey"
+        ,"Jeddah,Saudi Arabia"
+        ,"Damascus,Syria"
+        ,"Tel Aviv,Israel"
+        ,"Dubai,UAE"
+        ,"Gaza,Palestine"
+        ,"Beirut,Lebanon"
+        ,"Tokyo,Japan"
+        ,"Kyoto,Japan"
+        ,"Karachi,Pakistan"
+        ,"Seoul,South Korea"
+        ,"Pyongyang,North Korea"
+        ,"Shanghai,China"
+        ,"Beijing,China"
+        ,"Delhi,India"
+        ,"Mumbai,India"
+        ,"Manila,Philippines"
+        ,"Osaka,Japan"
+        ,"Kolkata,India"
+        ,"Jakarta,Indonesia"
+        ,"Dhaka,Bangladesh"
+        ,"Bangkok,Thailand"
+        ,"Nagoya,Japan"
+        ,"Hong Kong"
+        ,"Taipei,Taiwan"
+        ,"Kuala Lumpur,Malaysia"
+        ,"Ho Chi Minh City,Vietnam"
+        ,"Kathmanudu,Nepal"
+        ,"Tirana,Albania"
+        ,"Baku,Azerbaijan"
+        ,"Bridgetown,Barbados"
+        ,"La Paz,Bolivia"
+        ,"Vancouver,Canada"
+        ,"Reykjavik,Iceland"
+        ,"Almaty,Kazakhstan"
+        ,"Astana,Kazakhstan"
+        ,"Antananarivo,Madagascar"
+        ,"Monaco"
+        ,"Ulaanbaatar,Mongolia"
+        ,"Port Moresby,Papau New Guinea"
+        ,"Doha,Qatar"
+        ,"Kigali,Rwanda"
+        ,"Victoria,Seychelles"
+        ,"Pretoria,Cape Town"
+        ,"Colombo,Sri Lanka"
+        ,"Bern,Switzerland"
+        ,"Port of Spain,Trinidad and Tobago"
+        ,"Tunis,Tunisia"
+        ,"Abu Dhabi,UAE"
+        ,"Hanoi,Vietnam"
+        ,"Salzburg,Austria"
+        ,"Inverness,UK"
+        ,"San Juan,Puerto Rico"
+        ,"Dublin,Ireland"
+        ,"Cork,Ireland"
+        ,"Venice,Italy"
+        ,"Cadiz,Spain"
+        ,"Portland,USA"
+        ,"Sapporo,Japan"
+        ,"Grenoble,France"
+        ,"Lillehammer,Norway"
+        ,"Sochi,Russia"
+        ,"Innsbruck,Austria"
+        ,"Teruel,Spain"
+        ,"Bordeaux,France"
+        ,"Hull,UK"
+        ,"Nicosia,Cyprus"
+        ,"Stanley,Falkland Islands"
+    ];
+
+function databaseUpdate(name, score) {
+
+    database.push().set({
+        name: name,
+        score: score
+    });
+    updateUI(); 
+}
+
+function updateUI() {
+	databaseField.innerHTML = "";
+
+	database.orderByChild("score").on("child_added", function(snapshot){
+	databaseField.innerHTML += snapshot.val().name + " " + snapshot.val().score + "<br>";
+  });
+}
+
+
+
+function randomCity() {
+    var i = Math.floor(Math.random() * 200);  
+    return cities[i];
+}
+
+
+function getWeather(cityName) {
+    var xmlHttp = new XMLHttpRequest();
+    var url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=32c4996e9a641c05c600040093f3e272";
+
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState === 4) {
+            if(xmlHttp.status === 200) {
+                var weatherData = JSON.parse(xmlHttp.responseText);
+                console.log(weatherData);
+                console.log(weatherData.main.temp);
+                weather = Math.round(weatherData.main.temp); 
+                guessInput.addEventListener("click", gameLoop2);
+            }
+            else if (xmlHttp.status === 404) {
+                console.log(JSON.parse(xmlHttp.responseText));
+            }
+        }
+    };
+    xmlHttp.open("GET", url, true); 
+    xmlHttp.send();
+}
+
+
+
+// CODIGO PARA BUCLE DEL JUEGO
+updateUI();
+clickStart.addEventListener("click", gameLoop1);
+var gameState = 0;
+var city;
+var guess;
+var weather;
+var player;
+var score = 0;
+guessInput.disabled = true;
+guessValue.disabled = true;
+nextCity.disabled = true;
+nameInput.disabled = true;
+scoreInput.disabled = true;
+
+
+function gameLoop1(){
+
+    clickStart.disabled = true;
+    nextCity.disabled = true;
+
+    if (gameState == 10) {
+    	cityDetails.innerHTML = " ";
+    	enterGuess.innerHTML = " ";
+    	guessValue.disabled = true;
+        messageArea.innerHTML = "Thank you for playing. Your final score is " + score + ". Please enter your name.";
+        scoreInput.disabled = false;
+        nameInput.value = " ";
+        nameInput.disabled = false;
+        scoreInput.onclick = function() {
+        	 player = nameInput.value;
+        	 databaseUpdate(player,score);
+             gameState = 0;
+             score = 0;
+             clickStart.disabled = false;
+             nameInput.disabled = true;
+             scoreInput.disabled = true;
+             clickStart.innerHTML = "Play Again"
+             messageArea.innerHTML = "Thank you for playing. Check the high score list to find your name. Click to play again.";
+             return;
+        };
+
+    }
+
+    else {
+    	enterGuess.innerHTML = " ";
+    	guessInput.disabled = false;
+    	guessValue.disabled = false;
+        messageArea.innerHTML = " ";
+        guessValue.value = " ";
+        city = randomCity();
+        getWeather(city);
+        cityDetails.innerHTML = "What is the weather in " + city + " ?";
+        guessInput.disabled = false;
+    }
+}
+
+
+
+
+function gameLoop2(){
+    guess = guessValue.value;
+    guessInput.disabled = true;
+    var x = weather - guess;
+    score += Math.abs(x);
+    messageArea.innerHTML = "The actual weather in " + city + " is " + weather + " and your guess was " + guess + ". The difference is " + Math.abs(x);
+    gameState = gameState + 1;
+    nextCity.disabled = false;
+    nextCity.addEventListener("click", gameLoop1);
+}
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

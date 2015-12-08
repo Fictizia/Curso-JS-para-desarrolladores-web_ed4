@@ -1,4 +1,4 @@
-   // TANQUE OBJETO Y METODOS     
+   // TANQUE OBJETO Y METODOS    
      
       var tanque = function() {
          this.capacidad = "40 litres";
@@ -7,14 +7,26 @@
          this.nivelAguaMaximo = "29cm";
          
          this.agua = 0;
+         this.nitratos = 0;
+         this.nitritos = 0;
+         this.durezaSales = 0;
+         this.carbonatos = 0;
+         this.ph = 7;
+         this.cloro = 0;
          this.peces = [];
          this.desguace = function () {
             console.log("vacianado agua");
             this.agua = 40;
          }
          
-         this.anadirAgua = function(litros) {
+         this.anadirAgua = function(litros,nitratos,nitritos,durezaSales,carbonatos,ph,cloro) {
             this.agua = this.agua + litros;
+            this.nitratos = this.nitratos + nitratos;
+            this.nitritos = this.nitritos + nitritos;
+            this.durezaSales = this.durezaSales + durezaSales;
+            this.carbonatos = this.carbonatos + carbonatos;
+            this.ph = this.ph + ph;
+            this.cloro = this.cloro + cloro;
                if (this.agua > 40) {
                   this.desguace();
               }
@@ -38,6 +50,12 @@
                }
             }
             console.log("Este pez no existe");
+         }
+         
+         this.estado = function() {
+            for (var property in tanque) {
+               console.log(property, object);
+            }
          }
       }
 
