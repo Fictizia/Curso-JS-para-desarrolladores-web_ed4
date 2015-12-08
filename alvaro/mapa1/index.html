@@ -1,0 +1,16 @@
+ if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // Consola
+            console.info("Latitud: " + position.coords.latitude + "\nLongitud: "+ position.coords.longitude);
+            // HTML
+            var latlon = position.coords.latitude.toFixed(4) + "," + position.coords.longitude.toFixed(4)
+            var datos = "<h3>Ahí estás!</h3>"
+            datos += "Latitud: " + position.coords.latitude.toFixed(4) + "<br>"
+            datos += "Longitud: "+ position.coords.longitude.toFixed(4)
+            var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=15&size=400x300&sensor=false";
+           var sacalo = datos + "<br><img src='"+img_url+"'>";
+            document.body.innerHTML = sacalo;
+        });
+    } else {
+      console.warn("Geolocation no soportado :-( ");
+    }
