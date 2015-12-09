@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+
+<style>
+
+* {
+	font-family: verdana;
+}
+
+#mainbox {
+	width:80%;
+	margin: 5% auto;
+	padding: 5%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+
+
+
+#footer {
+	clear: both;
+}
+
+input {
+	height: 30px;
+	display: block;
+	margin: 5px 0;
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<div id="mainbox">
+
+
+			<h2>Change your account email</h2>
+			<input type="text" size="25" placeholder="Old Email" id="oldemail">
+			<input type="text" size="25" placeholder="New Email" id="newemail">
+			<input type="password" size="25" placeholder="password" id="password">
+			<button id="button">Go!</button>
+		
+
+		<div id="footer">
+		</div>
+
+	</div>
+
+	
+
+
+
+
+
+
+<script>
+
+var ref = new Firebase("https://test-david-fisher.firebaseio.com");
+
+
+var oldEmail = document.getElementById("oldemail");
+var newEmail = document.getElementById("newemail");
+var password = document.getElementById("password");
+var button = document.getElementById("button");
+
+button.onclick = function() {
+	ref.changeEmail ({
+		oldEmail: oldEmail.value,
+		newEmail: newEmail.value,
+		password: password.value,
+	}, function(error){
+		if (error === null) {
+			alert("Email changed successfully");
+		} else {
+			alert("Error changing email")
+		}
+	});
+	oldEmail.value = "";
+	newEmail.value = "";
+	password.value = "";
+}
+
+
+</script>
+</body>
+</html>

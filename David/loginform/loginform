@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+
+<style>
+
+* {
+	font-family: verdana;
+}
+
+#signupbox {
+	width:80%;
+	margin: 5% auto;
+	padding: 5%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+#signup {
+	width: 40%;
+	padding: 5%;
+	float: left;
+	border-right: 1px solid black;
+}
+
+#login {
+	width: 39%;
+	padding: 5%;
+	float: right;
+}
+
+#footer {
+	clear: both;
+}
+
+input {
+	height: 30px;
+	display: block;
+	margin: 5px 0;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin-top: 20px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<div id="signupbox">
+
+		<div id="signup">
+			<h2>Sign Up</h2>
+			<input type="text" size="25" placeholder="Full Name" id="fullname">
+			<input type="text" size="25" placeholder="Username" id="username">
+			<input type="text" size="25" placeholder="Email" id="email">
+			<input type="password" size="25" placeholder="Password" id="password">
+			<input type="text" size="25" placeholder="Location" id="location">
+			<p>By clicking sign up, you agree to our <a href=".">terms</a>, and that you have read our <a href=".">Privacy Policy</a></p>
+			<button id="signupbutton">Sign up</button>
+			<img src="http://mynewhope.tv/blog/wp-content/uploads/2010/08/facebook-logo-small.jpg">
+			<p><a href="" id="facebooklogin">Login with Facebook </a></p>
+		</div>
+
+		<div id="login">
+			<h2>Log In</h2>
+			<input type="text" size="25" placeholder="Email" id="loginemail">
+			<input type="password" size="25" placeholder="Password" id="loginpassword">
+			<p><a href="" id="forgotpassword">Forgot password? </a></p>
+			<button id="loginbutton">Log In </button>
+		</div>
+
+		<div id="login">
+			<h2>Already Registered</h2>
+			<p><a href="" id="changeemail">Click here to change your account email. </a></p>
+			<p><a href="" id="changepassword">Click here to change your password.</a></p>
+		</div>
+
+
+		<div id="footer">
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+var ref = new Firebase("https://test-david-fisher.firebaseio.com");
+var users = ref.child("users");
+
+
+var fullName = document.getElementById("fullname");
+var userName = document.getElementById("username");
+var email = document.getElementById("email");
+var password = document.getElementById("password");
+var place = document.getElementById("location");
+var loginEmail = document.getElementById("loginemail");
+var loginPassword = document.getElementById("loginpassword");
+
+var createButton = document.getElementById("signupbutton");
+var loginButton = document.getElementById("loginbutton");
+
+var forgotPassword = document.getElementById("forgotpassword");
+var changeEmail = document.getElementById("changeemail");
+var changePassword = document.getElementById("changepassword");
+var facebookLogin = document.getElementById("facebooklogin")
+
+
+createButton.onclick = function(){
+	ref.createUser({
+		username: userName.value,
+		email: email.value,
+		password: password.value,
+		place: place.value,
+	}, function(error, userData) {
+		if (error) {
+			alert("Error creating user:");
+		} else {
+		    alert("Successfully created user account with uid:");
+		}
+	});
+	users.push({
+		name: fullName.value,
+		username: userName.value,
+		email: email.value,
+		location: place.value,
+	})
+	fullname.value = "";
+	userName.value = "";
+	email.value = "";
+	password.value = "";
+	place.value = "";
+};
+
+
+
+
+loginButton.onclick = function() {
+	ref.authWithPassword ({
+		email: loginEmail.value,
+		password: loginPassword.value,
+	}, function(error,authData) {
+		if (error) {
+			alert("Login Failed");
+		} else {
+			alert("Login successful");
+		}
+	});
+	loginEmail.value = "";
+	loginPassword.value = "";
+};
+
+
+forgotPassword.onclick = function() {
+	newwindow = window.open("forgotpassword.html",'name','height=400,width=400,top=150,left=300');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+changeEmail.onclick = function() {
+	newwindow = window.open("changeemail.html", "name", "height=400,width=400,top=150,left=300");
+	if (window.focus)
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+changePassword.onclick = function () {
+	newwindow = window.open("changepassword.html", "name", "height=400,width=400,top=150,left=300");
+	if (window.focus)
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+facebookLogin.onlick = function (){
+ref.authWithOAuthRedirect("facebook", function(error) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+  }
+});
+};
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
