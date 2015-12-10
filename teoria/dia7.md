@@ -15,9 +15,7 @@ Objetivos:
 
 ![Party_joke_commitStrip](http://www.commitstrip.com/wp-content/uploads/2015/02/Strip-Saint-valentin-650-finalenglish.jpg)
 
-```javascript
-  // Tu solución
-```
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/formulario)
 
 
 ### Trabajando con APIs
@@ -259,13 +257,59 @@ Soporte en cliente (librerías):
 Nota: http://openweathermap.org te será de gran ayuda, busca la solución al error 401
 
 ```javascript
-	 //	Tu solución aquí
+	var contenido = "";
+  	function temperaturaCiudad (ciudad) {
+        var xmlHttp = new XMLHttpRequest(),
+        APIKey = '', // Puedes usar una cuenta gratuita -> http://openweathermap.org/price
+        cURL = 'http://api.openweathermap.org/data/2.5/weather?q='+ciudad+'&APPID='+APIKey;
+    
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                var datos = (JSON.parse(xmlHttp.responseText));
+	              contenido += "<h1>"+datos.name+"</h1>"
+	              contenido += "<p>"+datos.weather[0].description+"</p>"
+	              document.body.innerHTML = contenido;
+            } else if (xmlHttp.readyState === 4 && xmlHttp.status === 404) {
+                datos = JSON.parse(xmlHttp.responseText);
+                console.error("ERROR! 404");
+                console.info(datos);
+            }
+        };
+    
+        xmlHttp.open( "GET", cURL, true );
+        xmlHttp.send();
+    }
+    
+    temperaturaCiudad("Madrid");
+    temperaturaCiudad("Barcelona");
+    temperaturaCiudad("Valencia");
 ```
 
 3 - Jugando con [datos abiertos](http://datos.gob.es/), saquemos los detalles de todos los cuadros eléctricos de Gijón por consola.
 
 ```javascript
-	 //	Tu solución aquí
+    function peticionAjax (url) {
+	  var xmlHttp = new XMLHttpRequest();
+	
+	            xmlHttp.onreadystatechange = function () {
+	
+	                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+	                    var datos = (JSON.parse(xmlHttp.responseText));
+                        console.log(datos)
+	                } else if (xmlHttp.readyState === 4 && xmlHttp.status === 404) {
+	                    console.error("ERROR! 404");
+	                    console.info(JSON.parse(xmlHttp.responseText));
+	                }
+	            };
+	
+	            xmlHttp.open( "GET", url, true );
+	            xmlHttp.send();
+	}
+    
+    
+    // Utilizamos un proxy como http://crossorigin.me para solucionar el problema de CORS	
+	peticionAjax("http://crossorigin.me/http://opendata.gijon.es/descargar.php?id=163&tipo=JSON");
+
 ```
 
 ```
