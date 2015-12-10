@@ -1,0 +1,42 @@
+@charset "utf-8"
+
+body {
+    font-family: Verdana;
+}
+
+main {
+    width: 800px;
+    margin: 0 auto;
+}
+
+input {
+    border-radius: 6px;    
+    width: 200px;
+    height: 25px;
+}
+
+#form {
+    background: #555;
+    color: #FFF;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+
+#form input {
+    width: 30%;
+    margin-right: 10px;
+}
+
+#buttons input {
+     background: gray;   
+     color: #FFF;
+     display: block;
+     margin-bottom: 5px;
+     border: 0;
+     outline: none;
+}
+
+#result {
+    
+}
