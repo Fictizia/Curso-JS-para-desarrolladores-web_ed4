@@ -2,8 +2,8 @@
 ![shieldsIO](https://img.shields.io/github/forks/UlisesGascon/curso-js-web-developers-112015.svg)
 ![shieldsIO](https://img.shields.io/github/stars/UlisesGascon/curso-js-web-developers-112015.svg)
 
-#JavaScript para desarrolladores web
-###Programación JavaScript, Backbone.js, programación orientada a objetos, patrones de diseño y MVC
+# JavaScript para desarrolladores web
+### Programación JavaScript, programación orientada a objetos, programación funcional, patrones de JS y MVC con Backbone.js
 
 ![Foto Portada](https://scontent.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/11949381_750053528456805_7991316547738746840_n.png?oh=47d111e2e4dada59424c72c3850a6db3&oe=568F64B6)
 
@@ -32,7 +32,7 @@ Teoría | Recursos
 [Clase 6](teoria/dia6.md) | [Clase 6](recursos/dia6.md)
 [Clase 7](teoria/dia7.md) | [Clase 7](recursos/dia7.md)
 [Clase 8](teoria/dia8.md) | [Clase 8](recursos/dia8.md)
-Clase 9 | Clase 9
+[Clase 9](teoria/dia9.md) | [Clase 9](recursos/dia9.md)
 Clase 10 | Clase 10
 Clase 11 | Clase 11
 Clase 12 | Clase 12
@@ -67,13 +67,26 @@ Programación funcional
 * Callbacks
 * Event Driven Design
 
-Diseño de Patrones en JS
+Patrones de código en JS
 =================
-* Constructores
-* Modulos
+* Namespace
+* Init-time branching
+* Lazy definition
+* Module
+* Revealing Module
+
+Patrones de diseño en JS
+=================
+* Prototype
+* Decorator
 * Singleton
-* MVC
-* Inyección de dependéncias
+* Factory
+* Iterator
+* Façade
+* Mediator
+* Mixins
+* Observer
+* Chain of Responsability
 
 MVC con Backbone.js
 =================
@@ -87,21 +100,16 @@ HTML5 API
 * Selectors
 * Geolocalización
 * LocalStorage
-* IndexedDB
 * ContentEditable
 * Offline
 * History
-* Drag & Drop
-* File
-* Web Messaging
-* Workers
 * WebSockets
-* Canvas
 
 AJAX
 =================
 * HTTP
 * JSON
+* JSONP
 * CORS
 
 Herramientas
