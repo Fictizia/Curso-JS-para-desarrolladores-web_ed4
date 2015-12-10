@@ -1,0 +1,14 @@
+Dia 8
+-----------------------
+-Access-Control-Allow-Origin: Aparece en mas de una ocasión. No permite a geten de otros dominios conectarse y sacar datos.
+Ejercicio de Gijon
+-Proxys:HAce as veces de intermediario en esa conexión ya que si te permite realizar peticiones Ajax
+Hace una petición al proxy.
+http://crossorigin.me/http:...
+-Corsoorigin.me
+No utilzarlo en producción mejor construir un proxy.
+
+Html5
+----------------------
+Objetos que se pueden acceder de forma nativa.
+Query selectors.
