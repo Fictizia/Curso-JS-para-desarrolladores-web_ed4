@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario con Firebase</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <style type="text/css">
+        #contenedor {
+            width: 450px;
+        }
+    </style>
+</head>
+<body>
+    <div id="alerta"></div>
+    <div id="contenedor" class="container">
+        <h1>Formulario</h1>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form action="javascript:subirDatos()" method="POST">
+                    <label for="email">Email: </label>
+                    <input id="email" type="email" name="email" placeholder="Correo electrónico" required/>
+                    <br />
+                    <label for="nombre">Nombre: </label>
+                    <input id="nombre" type="text" name="nombre" placeholder="Nombre" required/>
+                    <br />
+                    <label for="apellidos">Apellidos: </label>
+                    <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" required/>
+                    <br />
+                    <label for="edad">Edad: </label>
+                    <input id="edad" type="number" name="edad" placeholder="Edad" />
+                    <br />
+                    <input id="submit" type="submit" />
+                </form>
+            </div>
+        </div>
+        <h3>Inscritos</h3>
+        <div id="nuevosInscritos">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p class="text-center"><b>Nadie se inscribió aun</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/2.2.9/firebase.js'></script>
+    <script type="text/javascript" src="formulario.js"></script>
+</body>
+</html>
