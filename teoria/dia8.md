@@ -12,17 +12,13 @@ Objetivos:
 - Comprobar si ese mismo usuario ya esta registrado, para evitar multiples inscripciones.
 - Incluiremos en la página los usuarios que se van sumando.
 
-```javascript
-  // Tu solución
-```
+- [Solucion](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/social-form)
 
 ### Ajax
 
 4 - Desarrolla una versión mejorada de [MovieFire](https://github.com/arvindr21/movieFire/tree/master/jsFire) (JS puro) incluyendo llamadas AJAX a la base de datos de IMBD para enriquecer los datos, usando [OMDb API](http://omdbapi.com/). 
 
-```javascript
-  // Tu solución
-```
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/movieFire)
 
 ### HTML5 API
 
@@ -384,9 +380,8 @@ function initMap() {
 
 1 - Utiliza Google Maps para posicionar al usuario.
 
-```javascript
-	 //	Tu solución aquí
-```
+- [Solucion](https://gist.github.com/UlisesGascon/7d88e945bf83a4ddb33a)
+
 
 2 - Utiliza Ajax para posicionar al usuario y las estaciones de BiciMad en un mapa:
 
@@ -396,9 +391,8 @@ function initMap() {
     - [BiciMad Cercania](http://bicimad-api.herokuapp.com/api-v1/locations/nearest/?lat=40.418889&long=-3.691944&distance=1000000000)
     - [BiciMad Localizaciones](http://bicimad-api.herokuapp.com/api-v1/locations/)
     
-```javascript
-	 //	Tu solución aquí
-```
+- [Solucion](https://github.com/UlisesGascon/bicimad-api/blob/master/ejemplos/nearest.html)
+- [Extra - DataTables!](https://github.com/UlisesGascon/bicimad-api/blob/master/ejemplos/locations.html)
 
 3 - Utiliza esta [librería](https://github.com/UlisesGascon/curso-js-web-developers-112015/blob/master/otros/starwars/facetheforce.js) para posicionar al usuario, los cascos de StarWars con sus característicos iconos y la distancia estimada
 
@@ -409,9 +403,8 @@ function initMap() {
     - [Más sobre #FaceTheForce](http://www.starwars.es/face-the-force)
     - [Darth Vader podría estar mal localizado](http://www.20minutos.es/noticia/2605833/0/reparacion-casco/darth-vader/face-the-force/)
 
-```javascript
-	 //	Tu solución aquí
-```
+- [Demo](http://ulisesgascon.github.io/Face-the-force-con-html5/helmets_distance.html)
+- [Solucion](https://github.com/UlisesGascon/Face-the-force-con-html5/blob/master/demos/helmets_distance.html)
 
 
 
