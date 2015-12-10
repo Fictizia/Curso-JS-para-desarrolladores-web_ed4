@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+        <style>
+            #map {
+                width: 600px;
+                height: 600px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>    
+    </body>
+</html>
+<script type="text/javascript">
+    if ("geolocation" in navigator) {
+        
+        function initMap(position) {
+            return new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: {lat: position.coords.latitude, lng: position.coords.longitude }
+            });   
+        }
+        
+        function success(position) {
+            alert("Enhorabuena. Te vamos a geolocalizar babucha.");
+            addMarker(position);
+        }
+        
+        function fail(result) {
+            alert("Se ha producido un error. Error Code: " + result.Code + ".")
+        }
+        
+        function addMarker(position){
+            var map = initMap(position);
+            var marker = new google.maps.Marker({
+                position: { lat: position.coords.latitude, lng: position.coords.longitude },
+                label: "Yo",
+                map: map
+              });
+        }
+        
+        function getBikes(position) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if(xmlHttp.readyState === 4) {
+                    if(xmlHttp.status >= 200 && xmlHttp.status < 300) {
+                        placeBikes(JSON.parse(xmlHttp.responseText));
+                    } else if(xmlHttp.status === 404) {
+                        alert('Error');
+                    }
+                }
+            }
+            xmlHttp.open("GET", "https://bicimad-api.herokuapp.com/api-v1/locations/nearest/?lat=" + position.coords.latitude +"&long=" + position.coords.longitude + "&distance=1000000000", true);
+            xmlHttp.send();
+        }
+        
+        function placeBikes(bikes) {
+            for (var bike in bikes) {
+                addMarker()
+            }
+        }
+        
+        var position = navigator.geolocation.getCurrentPosition(success);
+        
+    } else {
+      console.warn("Geolocation no soportado :-( ");
+    }    
+</script>
