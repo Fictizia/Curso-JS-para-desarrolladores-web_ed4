@@ -13,8 +13,6 @@ Objetivos:
 - Es importante que no se inscriban multiples usuarios con una misma cuenta de email.
 - Queremos también incluir la lista de las personas que ya se han inscrito en la misma pagina que el formulario.
 
-![Party_joke_commitStrip](http://www.commitstrip.com/wp-content/uploads/2015/02/Strip-Saint-valentin-650-finalenglish.jpg)
-
 - [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/formulario)
 
 
