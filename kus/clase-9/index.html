@@ -3,32 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>Agenda con LocalStorage</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <form action="" id="form">
-    <div class="control">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre">
-    </div>
+  <h1>Agenda de contactos</h1>
+  <div class="wrapper">
+    <form action="" id="form" class="form">
+      <h2>Añadir contacto</h2>
+      <div class="form__control">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
 
-    <div class="control">
-      <label for="tfno">Teléfono</label>
-      <input type="tel" id="tfno" name="tfno">
-    </div>
+      <div class="form__control">
+        <label for="tfno">Teléfono</label>
+        <input type="tel" maxlength="9" pattern="[0-9]{9}" id="tfno" name="tfno" placeholder="666666666" required>
+      </div>
 
-    <div class="control">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email">
-    </div>
+      <div class="form__control">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="name@email.com">
+      </div>
 
-    <div class="actions">
-      <button type="submit">Guardar contacto</button>
-    </div>
-  </form>
+      <input type="hidden" value="0" id="key" name="key">
 
-  <button id="btn-delete-all">Eliminar todos</button>
+      <div class="form__actions">
+        <button type="submit" class="btn">Guardar contacto</button>
+      </div>
+    </form>
 
-  <ul id="contact-list"></ul>
+    <h2>Contactos</h2>
+    <ul id="contact-list" class="contact-list"></ul>
+    <p class="hidden no-contacts" id="no-contacts">Tu agenda está muy vacía :(</p>
+    <button id="btn-delete-all" class="btn btn--delete hidden">Eliminar todos</button>
+  </div>
+
 
   <script src="app.js"></script>
 </body>

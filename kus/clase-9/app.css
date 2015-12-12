@@ -1,0 +1,116 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button { cursor: pointer; }
+
+.hidden { display: none; }
+
+h1 {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 24px;
+  font-weight: normal;
+  margin-bottom: 60px;
+}
+h2 {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 400px;
+}
+.form { margin-bottom: 60px; }
+.form__control {
+  margin-bottom: 10px;
+}
+.form__control label {
+  display: block;
+  font-weight: bold;
+  padding-bottom: 4px;
+}
+.form__control input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 6px;
+  border-radius: 2px;
+  border: 1px solid #B6B6B6;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 8px;
+  background: #D9D9D9;
+  border: 1px solid #B6B6B6;
+  border-radius: 2px;
+}
+.btn:hover {
+  background: #CECECE;
+}
+.btn--delete {
+  background: #F7AAAA;
+  color: #880B16;
+  font-weight: bold;
+  border-color: #A00C19;
+}
+.btn--delete:hover {
+  background: #FB999A;
+}
+.btn--mini { padding: 2px 4px; width: auto; font-weight: normal; background: transparent; }
+
+.contact-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.contact-list li {
+  border: 1px solid #E1E1E1;
+  font-size: 14px;
+  padding: 10px;
+  position: relative;
+  min-height: 48px;
+}
+.contact-list li + li {
+  margin-top: -1px;
+}
+.contact-list li:nth-child(even) {
+  background: #F9F9F9;
+}
+.contact-list li:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.contact-list li:last-child {
+  border-radius: 0 0 4px 4px;
+}
+.contact-list .name {
+  font-weight: bold;
+}
+.contact-list .edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.contact-list .edit button {
+  margin-left: 4px;
+}
+
+.no-contacts {
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  background: #EFEFEF;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ABABAB;
+  font-weight: bold;
+}
