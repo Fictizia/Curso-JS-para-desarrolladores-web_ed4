@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda con LocalStorage</title>
+</head>
+<body>
+  <form action="" id="form">
+    <div class="control">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre">
+    </div>
+
+    <div class="control">
+      <label for="tfno">Teléfono</label>
+      <input type="tel" id="tfno" name="tfno">
+    </div>
+
+    <div class="control">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+    </div>
+
+    <div class="actions">
+      <button type="submit">Guardar contacto</button>
+    </div>
+  </form>
+
+  <button id="btn-delete-all">Eliminar todos</button>
+
+  <ul id="contact-list"></ul>
+
+  <script src="app.js"></script>
+</body>
+</html>
