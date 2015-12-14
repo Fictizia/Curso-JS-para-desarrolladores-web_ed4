@@ -110,10 +110,12 @@
   function printContact(data) {
     var f = d.createDocumentFragment();
 
-    var buttons = [
-      '<button title="Editar" onclick="editContact(this)" class="btn btn--mini btn--edit"><i class="fa fa-pencil"></i></button>',
-      '<button title="Borrar" onclick="deleteContact(this)" class="btn btn--mini btn--delete"><i class="fa fa-trash"></i></button>'
-    ].join('');
+    if (!printContact.buttons) {
+      printContact.buttons = [
+        '<button title="Editar" onclick="editContact(this)" class="btn btn--mini btn--edit"><i class="fa fa-pencil"></i></button>',
+        '<button title="Borrar" onclick="deleteContact(this)" class="btn btn--mini btn--delete"><i class="fa fa-trash"></i></button>'
+      ].join('');
+    }
 
     var html = [
     '<div class="data">',
@@ -131,7 +133,7 @@
     editButtons.className = 'edit';
     editButtons.setAttribute('data-key', data.key);
     editButtons.setAttribute('data-name', data.name);
-    editButtons.innerHTML = buttons;
+    editButtons.innerHTML = printContact.buttons;
 
     li.appendChild(editButtons);
     contactList.appendChild(f);
