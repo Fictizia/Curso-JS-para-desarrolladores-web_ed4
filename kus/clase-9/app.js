@@ -1,4 +1,4 @@
-(function(w, d) {
+(function(d) {
 
   var form = d.querySelector('#form');
   var contactList = d.querySelector('#contact-list');
@@ -22,12 +22,12 @@
     }
   })();
 
-  w.editContact = function(el) {
+  this.editContact = function(el) {
     setFormData(JSON.parse(localStorage.getItem(el.parentNode.dataset.key)));
     editMode = true;
   };
 
-  w.deleteContact = function(el) {
+  this.deleteContact = function(el) {
     var parent = el.parentNode;
     if (!confirm('¿Estás seguro de que quieres borrar a ' + parent.dataset.name + '?')) return;
 
@@ -161,7 +161,7 @@
     printContacts();
   }
 
-})(window, document);
+})(document);
 
 
 
