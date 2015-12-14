@@ -35,8 +35,7 @@
     keys[el.parentNode.dataset.key] = undefined;
     printContacts();
 
-    var contactDeleted = new CustomEvent('contact-deleted', { detail: { key: parent.dataset.key } });
-    d.dispatchEvent(contactDeleted);
+    d.dispatchEvent(new CustomEvent('contact-deleted', { detail: { key: parent.dataset.key } }));
   };
 
   function setKeys() {
@@ -75,8 +74,7 @@
       printContacts();
       editMode = false;
     } else {
-      var contactAdded = new CustomEvent('contact-added', { detail: { data: data } });
-      d.dispatchEvent(contactAdded);
+      d.dispatchEvent(new CustomEvent('contact-added', { detail: { data: data } }));
     }
 
     clearForm();
