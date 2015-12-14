@@ -12,7 +12,7 @@
   d.addEventListener('contact-added', onContactAdded);
   d.addEventListener('contact-deleted', onContactDeleted);
 
-  (function init() {
+  (function() {
     toggleNoContacts();
 
     if (localStorage.length) {
