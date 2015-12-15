@@ -1,0 +1,10 @@
+Dia10
+---------------------------------------
+En los closures las funciones recuerdas su contexto y sus variables o parametros.
+
+
+Patrones:
+
+- 3 Capas: Separar Css, Javascript y HTML
+- Namespaces:
+- Init-time branching: 

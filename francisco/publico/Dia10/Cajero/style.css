@@ -1,0 +1,39 @@
+body {
+    font-family: Verdana;
+    font-size: 16px;
+}
+
+main {
+    width: 960px;
+    margin: 0 auto;
+    background: #666;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    color: #FFF;
+    text-align: center;
+}
+
+fieldset {
+    outline: none;
+    border: 0;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+legend {
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+input[type="submit"] {
+    background: #222;
+    border: 0;
+    outline: none;
+    color: #FFF;
+    padding: 6px;
+}
