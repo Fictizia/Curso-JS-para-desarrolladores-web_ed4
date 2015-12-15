@@ -125,10 +125,8 @@
     - Botón para borrar un contacto específico
     - Botón para borrar todos los contactos
     - Botón para recuperar el telefono de un contacto
-    
-```javascript
-    // Tu solución
-```
+
+- [Solución](https://gist.github.com/UlisesGascon/cd58db46ffbedc8ad1ba)
 
 2 - Crea una libreta de contactos para guardar multiples datos.
 - Objetivos:
@@ -140,9 +138,8 @@
 - Consejos:
     - Utiliza *JSON.parse()* y *JSON.stringify()* para guardar multiples datos bajo una misma clave
     
-```javascript
-    // Tu solución
-```
+- [Solución](https://gist.github.com/UlisesGascon/f3c382f3628754b4d323)
+
 ### ContentEditable
 
 - [Soporte en Navegadores](http://caniuse.com/#search=ContentEditable)
@@ -666,6 +663,27 @@ document.body.dispatchEvent(miEvento);
 
 1 - Aplicaremos este mismo concepto a la función de [calculo factorial](http://www.wikiwand.com/es/Factorial) que vimos en clases anteriores.
 
-```javascript
-    // Tu solución
+```javascript 
+    var factorial = function(n){
+       if(n <= 1)
+          return 1
+       else
+          return n * factorial(n-1)
+    }
+
+    var cachify = function(f, cache) {
+      return function(numero) {
+        if(!cache[numero]) {
+          cache[numero] = f(numero);
+        }
+        return cache[numero];
+      };
+    };
+
+    var cache = {};
+    factorial = cachify(factorial, cache);
+
+    console.info("factorial(160) = " + factorial(160));
+
+    // Prueba de rendimiento -> http://jsperf.com/factorial-cachear
 ```
