@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>Backbone</title>
+</head>
+<body>
+    <div id="vista01"></div>
+    <div id="vista02"></div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <script type="text/template" id="plantilla-vistacoche">
+        <h1> <%= marca %> <%= modelo %> </h1>
+        <p>
+            <a href="<%= url %>" class="mas-info">
+                Información en la wikipedia sobre el <%= marca %> <%= modelo %>.
+            </a>
+        </p>
+    </script>
+    <script type="text/template" id="plantilla-vistacochedetalle">
+        <h1> <%= marca %> </h1> 
+        <h2> <%= modelo %> </h2>
+        <p>
+            <a href="<%= url %>" class="mas-info">
+                Más en Wikiwand
+            </a>
+        </p>
+    </script>
+</body>
+</html>
