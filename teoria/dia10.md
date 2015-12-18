@@ -642,6 +642,8 @@ nuevoCoche.detalles();
     chequearInstanciacion();
 ```
 
+**Ejercicios**
+
 3 - Adaptamos el sistema acuapónico que construimos en clases anteriores al patrón de factoria.
 - Objetivos:
     - Utiliza el patrón de factoría.
