@@ -504,15 +504,12 @@ nuevoCoche.detalles();
 - Opcional:
     - usar el patrón *init-time branching* para gestionar los eventos
 
-```javascript
-    // Tu solución
-```
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero)
 
 
 2 - Adaptamos el cajero para que funcione offline
-```javascript
-    // Tu solución
-```
+
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero_manifest)
 
 # Patrones de Diseño Avanzado
 
@@ -651,5 +648,346 @@ nuevoCoche.detalles();
     - Usa una única variable global (namespace)
 
 ```javascript
-    // Tu solución
+    var debugMode = true;
+    
+    var acuApp = acuApp || {};
+    
+    acuApp = (function() {
+        // Privado
+        var acuaponia = {
+            core: {
+                constructores: {
+                    cama: function(opciones) {
+                        /* Propiedades */
+                        this.tipo = opciones.tipo;
+                        this.nombre = opciones.nombre;
+                        this.capacidad = opciones.capacidad;
+                        this.capacidadMedida = opciones.capacidadMedida;
+                        this.dimensiones = opciones.alto * opciones.ancho * opciones.largo;
+                        this.alto = opciones.alto;
+                        this.ancho = opciones.ancho;
+                        this.largo = opciones.largo;
+                        this.medida = opciones.dimensionesMedida;
+                        this.color = opciones.color;
+                        this.nivelAguaMaximo = opciones.nivelAguaMaximo;
+                        this.sustrato = opciones.sustrato;
+                        this.desagueFuncionando = false;
+                        this.nivelAgua = 0;
+                        this.plantas = {};
+                        /* Métodos */
+                        this.agregarPlanta = acuaponia.core.metodos.agregarPlanta;
+                        this.quitarPlanta = acuaponia.core.metodos.quitarPlanta;
+                        this.agregarAgua = acuaponia.core.metodos.agregarAgua;
+                        this.quitarAgua = acuaponia.core.metodos.quitarAgua;
+                        this.calcularHortalizas = acuaponia.core.metodos.calcularHortalizas;
+                        this.estadoGeneral = acuaponia.core.metodos.estadoGeneral;
+                    },
+                    tanque: function(opciones) {
+                        /* Propiedades */
+                        this.tipo = opciones.tipo;
+                        this.nombre = opciones.nombre;
+                        this.capacidad = opciones.capacidad;
+                        this.capacidadMedida = opciones.capacidadMedida;
+                        this.dimensiones = opciones.alto * opciones.ancho * opciones.largo;
+                        this.alto = opciones.alto;
+                        this.ancho = opciones.ancho;
+                        this.largo = opciones.largo;
+                        this.dimensionesMedida = opciones.dimensionesMedida;
+                        this.color = opciones.color;
+                        this.nivelAguaMaximo = opciones.nivelAguaMaximo;
+                        this.desagueFuncionando = false;
+                        this.nivelAgua = 0;
+                        this.peces = {};
+                        /* Métodos */
+                        this.agregarPez = acuaponia.core.metodos.agregarPez;
+                        this.quitarPez = acuaponia.core.metodos.quitarPez;
+                        this.agregarAgua = acuaponia.core.metodos.agregarAgua;
+                        this.quitarAgua = acuaponia.core.metodos.quitarAgua;
+                        this.calcularFrios = acuaponia.core.metodos.calcularFrios;
+                        this.calcularInvasores = acuaponia.core.metodos.calcularInvasores;
+                        this.estadoGeneral = acuaponia.core.metodos.estadoGeneral;
+                    }
+                },
+                metodos: {
+                    agregarPez: function(opciones) {
+                        this.peces[opciones.nombre] = {
+                            tipo: "pez",
+                            clase: opciones.clase,
+                            peso: opciones.peso || 100,
+                            pesoMedida: "gramos",
+                            espacio: opciones.espacio || 0.05,
+                            espacioMedida: "m3",
+                            lugar: opciones.lugar || "Tanque principal"
+                        };
+                    },
+                    quitarPez: function(nombre) {
+                        var temp = this.peces[nombre];
+                        delete this.peces[nombre];
+                        return temp;
+                    },
+                    calcularFrios: function() {
+                        var numero = 0;
+                        for (var key in this.peces) {
+                            if (this.peces[key].clase == "aguas frias") {
+                                numero++;
+                            }
+                        }
+                        this.peces["total aguas frias"] = numero;
+                    },
+                    calcularInvasores: function() {
+                        var numero = 0;
+                        for (var key in this.peces) {
+                            if (this.peces[key].clase == "invasora") {
+                                numero++;
+                            }
+                        }
+                        this.peces["total invasora"] = numero;
+                    },
+                    estadoGeneral: function() {
+    
+                        var resumenGeneral = "================================\n";
+                        resumenGeneral += "Estado del Agua (" + this.nombre + ")\n";
+                        resumenGeneral += "================================\n";
+                        resumenGeneral += "Agua disponible: " + this.nivelAgua + "/" + this.nivelAguaMaximo + "l\n";
+                        resumenGeneral += "Nitratos(" + this.calidadAgua.nitratos.simbolo + "): " + this.calidadAgua.nitratos.valor + this.calidadAgua.nitratos.medida + "\n";
+                        resumenGeneral += "Nitritos(" + this.calidadAgua.nitritos.simbolo + "): " + this.calidadAgua.nitritos.valor + this.calidadAgua.nitritos.medida + "\n";
+                        resumenGeneral += "Dureza de sales(" + this.calidadAgua["dureza de sales"].simbolo + "): " + this.calidadAgua["dureza de sales"].valor + "\n";
+                        resumenGeneral += "Carbonatos(" + this.calidadAgua.carbonatos.simbolo + "): " + this.calidadAgua.carbonatos.valor + "\n";
+                        resumenGeneral += "Ph(" + this.calidadAgua.ph.simbolo + "): " + this.calidadAgua.ph.valor + "\n";
+                        resumenGeneral += "Cloro(" + this.calidadAgua.cloro.simbolo + "): " + this.calidadAgua.cloro.valor + this.calidadAgua.cloro.medida + "\n";
+    
+                        if (this.tipo === "cama") {
+                            this.calcularHortalizas();
+                            resumenGeneral += "================================\n";
+                            resumenGeneral += "Estado de las Plantas\n";
+                            resumenGeneral += "================================\n";
+                            resumenGeneral += "Total Hortalizas: " + this.plantas["total hortalizas"] + "\n";
+    
+                        } else if (this.tipo === "tanque") {
+                            this.calcularFrios();
+                            this.calcularInvasores();
+                            resumenGeneral += "================================\n";
+                            resumenGeneral += "Estado de los Peces\n";
+                            resumenGeneral += "================================\n";
+                            resumenGeneral += "Total de Agua Frias: " + this.peces["total aguas frias"] + "\n";
+                            resumenGeneral += "Total de Invasores: " + this.peces["total invasora"] + "\n";
+                            resumenGeneral += "================================\n";
+    
+                        }
+    
+                        console.log(resumenGeneral);
+    
+                    },
+                    calcularHortalizas: function() {
+                        var numero = 0;
+                        for (var key in this.plantas) {
+                            if (this.plantas[key].clase == "hortaliza") {
+                                numero++;
+                            }
+                        }
+                        this.plantas["total hortalizas"] = numero;
+                    },
+                    agregarPlanta: function(opciones) {
+                        this.plantas[opciones.nombre] = {
+                            nombre: opciones.nombre,
+                            tipo: "planta",
+                            clase: opciones.clase,
+                            frutosDisponibles: opciones.frutosDisponibles,
+                            estadoActual: opciones.estadoActual,
+                            espacio: opciones.espacio || 0.05,
+                            espacioMedida: "m3",
+                            lugar: opciones.lugar || "Cama principal"
+                        };
+                    },
+                    quitarPlanta: function(nombre) {
+                        var temp = this.plantas[nombre];
+                        delete this.plantas[nombre];
+                        return temp;
+                    },
+                    agregarAgua: function(opciones) {
+                        this.calidadAgua = this.calidadAgua || {};
+                        // Nitratos
+                        this.calidadAgua.nitratos = this.calidadAgua.nitratos || {};
+                        this.calidadAgua.nitratos.valor = opciones.nitratos || 10;
+                        this.calidadAgua.nitratos.medida = "mg/l";
+                        this.calidadAgua.nitratos.simbolo = "NO3";
+                        // Nitritos
+                        this.calidadAgua.nitritos = this.calidadAgua.nitritos || {};
+                        this.calidadAgua.nitritos.valor = opciones.nitritos || 0.5;
+                        this.calidadAgua.nitritos.medida = "mg/l";
+                        this.calidadAgua.nitritos.simbolo = "NO2";
+                        // Dureza de Sales
+                        this.calidadAgua["dureza de sales"] = this.calidadAgua["dureza de sales"] || {};
+                        this.calidadAgua["dureza de sales"].valor = opciones.durezaSales || ">7ºd";
+                        this.calidadAgua["dureza de sales"].medida = "N/A";
+                        this.calidadAgua["dureza de sales"].simbolo = "GH";
+                        // Carbonatos
+                        this.calidadAgua.carbonatos = this.calidadAgua.carbonatos || {};
+                        this.calidadAgua.carbonatos.valor = opciones.carbonatos || "6ºd";
+                        this.calidadAgua.carbonatos.medida = "N/A";
+                        this.calidadAgua.carbonatos.simbolo = "KH";
+                        // PH
+                        this.calidadAgua.ph = this.calidadAgua.ph || {};
+                        this.calidadAgua.ph.valor = opciones.ph || 7.2;
+                        this.calidadAgua.ph.medida = "N/A";
+                        this.calidadAgua.ph.simbolo = "PH";
+                        // Cloro (CL2 mg/l)
+                        this.calidadAgua.cloro = this.calidadAgua.cloro || {};
+                        this.calidadAgua.cloro.valor = opciones.cloro || 0.2;
+                        this.calidadAgua.cloro.medida = "mg/l";
+                        this.calidadAgua.cloro.simbolo = "CL2";
+                        // Manejo de caudal
+                        this.nivelAgua = this.nivelAgua + opciones.litros;
+                        if (this.nivelAgua >= this.nivelAguaMaximo) {
+                            if (!this.desagueFuncionando) {
+                                this.desagueFuncionando = true;
+                                chivato("warn", "Se activó el sistema de desagüe de emergencia en " + this.nombre);
+                            }
+                            chivato("log", "nivel actual: " + this.nivelAgua);
+                            this.quitarAgua(this.nivelAgua - this.nivelAguaMaximo);
+                        }
+                    },
+                    quitarAgua: function(litros) {
+                        this.nivelAgua = this.nivelAgua - litros;
+                        if (this.desagueFuncionando) {
+                            this.desagueFuncionando = false;
+                            chivato("log", "Se desactivo el sistema de desagüe de emergencia en " + this.nombre);
+                        }
+                        chivato("log", "nivel actual: " + this.nivelAgua);
+                    },
+                    chivato: function(tipo, mensaje) {
+                        if (debugMode) {
+                            if (tipo == "warn") {
+                                console.warn(mensaje);
+                            } else {
+                                console.log(mensaje);
+                            }
+                        }
+                    }
+                },
+    
+                superConstructor: function(opciones) {
+                    var clase;
+                    if (opciones) {
+                        if (opciones.tipo === "cama") {
+                            clase = acuaponia.core.constructores.cama;
+                            return new clase(opciones);
+                        } else if (opciones.tipo === "tanque") {
+                            clase = acuaponia.core.constructores.tanque;
+                            return new clase(opciones);
+                        }
+                    } else {
+                        console.error("ERROR - \'Tipo\' No valido");
+                    }
+                }
+            }
+        };
+    
+        var chivato = acuaponia.core.metodos.chivato;
+    
+        // Público
+        return {
+            crear: acuaponia.core.superConstructor
+        };
+    
+    })();
+    
+    
+    // Cama
+    acuApp.camaPrincipal = acuApp.crear({
+        tipo: "cama",
+        nombre: "Cama principal",
+        capacidad: 10,
+        capacidadMedida: "Litros",
+        alto: 10,
+        ancho: 25.5,
+        largo: 51,
+        dimensionesMedida: "cm",
+        color: "Rojo",
+        nivelAguaMaximo: 5,
+        sustrato: "Piedra volcánica"
+    });
+    
+    acuApp.camaPrincipal.agregarPlanta({
+        nombre: "zanahoria1",
+        clase: "hortaliza",
+        frutosDisponibles: false,
+        estadoActual: "planton"
+    });
+    
+    acuApp.camaPrincipal.agregarPlanta({
+        nombre: "zanahoria2",
+        clase: "hortaliza",
+        frutosDisponibles: true,
+        estadoActual: "cosechable"
+    });
+    
+    acuApp.camaPrincipal.agregarPlanta({
+        nombre: "zanahoria3",
+        clase: "hortaliza",
+        frutosDisponibles: false,
+        estadoActual: "semilla"
+    });
+    
+    acuApp.camaPrincipal.agregarPlanta({
+        nombre: "zanahoria4",
+        clase: "hortaliza",
+        frutosDisponibles: false,
+        estadoActual: "semilla"
+    });
+    
+    var zanahoriaDescartada = acuApp.camaPrincipal.quitarPlanta("zanahoria4");
+    
+    acuApp.camaPrincipal.agregarAgua({
+        litros: 100
+    });
+    
+    acuApp.camaPrincipal.estadoGeneral();
+    
+    
+    // Tanque
+    acuApp.tanquePrincipal = acuApp.crear({
+        tipo: "tanque",
+        nombre: "Tanque principal",
+        capacidad: 40,
+        capacidadMedida: "Litros",
+        alto: 30.5,
+        ancho: 25.5,
+        largo: 51,
+        dimensionesMedida: "cm",
+        color: "Gris claro",
+        nivelAguaMaximo: 2
+    });
+    
+    acuApp.tanquePrincipal.agregarPez({
+        nombre: "Koi1",
+        clase: "aguas frias",
+        peso: 200
+    });
+    
+    acuApp.tanquePrincipal.agregarPez({
+        nombre: "Koi2",
+        clase: "aguas frias",
+        peso: 200
+    });
+    
+    acuApp.tanquePrincipal.agregarPez({
+        nombre: "pleco",
+        clase: "invasora",
+        peso: 400
+    });
+    
+    var koiDescartado = acuApp.tanquePrincipal.quitarPez("Koi2");
+    
+    acuApp.tanquePrincipal.agregarAgua({
+        litros: 987,
+        nitratos: 25,
+        nitritos: 0.5,
+        durezaSales: ">14ºd",
+        carbonatos: "3ºd",
+        ph: 8.0,
+        cloro: 0.4
+    });
+    
+    acuApp.tanquePrincipal.estadoGeneral();
 ```
