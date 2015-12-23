@@ -1,0 +1,16 @@
+
+    <p><b><%- details.Title %></b></p> [
+    <a href="#" class="close">Close</a>
+    ]
+    
+    <% if (details.Poster !== "N/A") { %>
+        <br><img src=<%= details.Poster %>>
+    <% } %> 
+
+    <p>Title: <%- details.Title %></p>
+    <p>Director: <%- details.Director %></p>
+    <p>Year: <%- details.Year %></p>
+    <p>Actors: <%- details.Actors %></p>
+    <p>Genre: <%- details.Genre %></p>
+    <p>Country: <%- details.Country %></p>
+    <p>Plot: <%- details.Plot %></p>
