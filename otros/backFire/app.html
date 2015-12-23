@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Movie Fire</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <h1>Movie Fire</h1>
+    <h3>Save all your Favorite Movies here</h3>
+    <hr />
+    <input type="text" id="movieName" placeholder="Enter your Favorite Movie Name" />
+    <h4>My Favorite Movies</h4>
+    <ol id="favMovies">
+      <label id="loading">Loading.. Please wait..</label>
+    </ol>
+        <div id="movieDetails"></div> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+    <script src="https://cdn.firebase.com/libs/backfire/0.3.0/backbone-firebase.min.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <script type="text/template" id="detailsTemplate">
+    <p><b><%- details.Title %></b></p> [
+    <a href="#" class="close">Close</a>
+    ]
+    
+    <% if (details.Poster !== "N/A") { %>
+        <br><img src=<%= details.Poster %>>
+    <% } %> 
+
+    <p>Title: <%- details.Title %></p>
+    <p>Director: <%- details.Director %></p>
+    <p>Year: <%- details.Year %></p>
+    <p>Actors: <%- details.Actors %></p>
+    <p>Genre: <%- details.Genre %></p>
+    <p>Country: <%- details.Country %></p>
+    <p>Plot: <%- details.Plot %></p>
+        
+        
+        
+    </script>
+    <script type="text/template" id="movieTemplate">
+    <%- name %> [
+            <% if (details.Response === "True") { %>
+                <a href="#" class="details">Details</a> |
+            <% } %>  
+            <a href="#" class="edit">Edit</a> |
+            <a href="#" class="delete">Delete</a>]
+    </script>
+</body>
+
+</html>
