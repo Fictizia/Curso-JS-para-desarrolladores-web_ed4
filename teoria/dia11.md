@@ -466,18 +466,16 @@ robot.masLento(); // Min alcanzado
 **Ejercicios**
 
 1 - Incorpora el patron *Chain of responsability* al cajero automatico para indicar los billetes y monedas facilitadas por la maquina cuando se retira efectivo
-```javascript
-    // Tu solución
-```
+
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero_chain)
 
 2 - Refactoriza la aplicación de las películas:
 - Objetivos:
   - Encapsular todo el código
   - Controlar la interacción con eventos
   - Estructurar el código de una manera eficiente
-```javascript
-    // Tu solución
-```
+
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/moviefire_patrones)
 
 ### Underscore
 
@@ -1138,10 +1136,9 @@ js/
     });
     var vistaCochecito = new cocheVista( cochecito );
 ```
+
 **Ejercicios**
 
 1 - Desarrolla una versión mejorada de [MovieFire](https://github.com/arvindr21/movieFire/tree/master/backFire) (usando Backbone) incluyendo llamadas AJAX a la base de datos de IMBD para enriquecer los datos, usando [OMDb API](http://omdbapi.com/). 
 
-```javascript
-  // Tu solución
-```
+- [Solución](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/backFire)
