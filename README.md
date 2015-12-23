@@ -39,8 +39,79 @@ Teoría | Recursos
 
 - [Extra](teoria/extra.md)
 
-Conceptos Básicos
+
+Aplicaciones Realizadas
 =================
+**Formulario**
+- Objetivo:
+    - Crear un formulario de inscripción para un evento ficticio. Impidiendo que un mismo usuario pueda registrarse más de una vez.
+- Versiones:
+    - [Formulario Básico con queries](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/formulario)
+    - [Formulario con Social Login (GitHub)](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/social-form)
+
+
+**Acuaponia**
+- Objetivo:
+    - Crear un sistema para el control de una [granja acuapónica](http://www.wikiwand.com/es/Acuapon%C3%ADa).
+- Versiones:
+    - [Acuaponía usando Constructores (Estilo ECMA5)](https://github.com/UlisesGascon/curso-js-web-developers-112015/blob/master/teoria/dia5.md)
+    - [Acuaponía usando namespace y patrón de factoría](https://github.com/UlisesGascon/curso-js-web-developers-112015/blob/master/teoria/dia10.md)
+
+**Cajero Automático**
+- Objetivo:
+    - El objetivo de este ejercicio es crear un cajero automático que funcione solamente con la consola de Chrome.
+- Versiones:
+    - [Cajero Automático Básico](https://github.com/UlisesGascon/curso-js-web-developers-112015/blob/master/teoria/dia4.md)
+    - [Cajero Automático orientado a eventos usando patrones y técnicas avanzadas](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero)
+    - [Cajero Automático usando Chain of Responsability Pattern](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero_chain)    
+    - [Cajero Automático con soporte offline](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/cajero_manifest)
+    
+
+**Libreta de contactos usando LocalStorage**
+- Objetivo: 
+    - Crear una libreta de contactos para guardar datos de contacto usando LocalStorage
+- Versiones:
+    - [Básica: nombre y teléfono](https://gist.github.com/UlisesGascon/cd58db46ffbedc8ad1ba)
+    - [Avanzada: múltiples datos (usando json)](https://gist.github.com/UlisesGascon/f3c382f3628754b4d323)
+
+
+**MovieFire**
+- Objetivo:
+    - Desarrolla una versión mejorada de [MovieFire](http://thejackalofjavascript.com/getting-started-with-firebase/) incluyendo llamadas AJAX a la base de datos de IMBD para enriquecer los datos, usando [OMDb API](http://omdbapi.com/).
+- Versiones:
+    - [Incluyendo AJAX usando vanillajs](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/movieFire)
+    - [Versión vanillajs orientada a eventos y encapsulada](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/moviefire_patrones)
+    - [Incluyendo AJAX usando Backbonejs](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/backFire)
+    - [Versión Backbone usando Requirejs](https://github.com/UlisesGascon/curso-js-web-developers-112015/tree/master/otros/backFire_requirejs_avanzado)
+
+
+**Posicionar al usuario**
+- Objetivo:
+    - Utiliza Google Maps para posicionar al usuario.
+- Versiones:
+    - [Geolocalización usando Google Maps](https://gist.github.com/UlisesGascon/7d88e945bf83a4ddb33a)
+
+
+**Star Wars con Geoposicionamiento**
+- Objetivo:
+    - Posicionar al usuario y [los cascos de la exposición de Star Wars](http://hipertextual.com/2015/10/cascos-de-star-wars-en-madrid) con sus característicos iconos y la distancia estimada.
+- Versiones:
+    - [Geolocalización usando Google Maps](https://github.com/UlisesGascon/Face-the-force-con-html5/blob/master/demos/helmets_distance.html)
+
+
+**BiciMad**
+- Objetivo:
+    - Utiliza Ajax para posicionar al usuario y las estaciones de BiciMad en un mapa
+- Versiones:
+    - [Posicionamiento del usuario y los totems](https://github.com/UlisesGascon/bicimad-api/blob/master/ejemplos/nearest.html) 
+    - [Información detallada de los totems usando DataTable y Jquery](https://github.com/UlisesGascon/bicimad-api/blob/master/ejemplos/locations.html)
+
+
+
+Temario
+=================
+
+**Conceptos Básicos**
 * Objects
 * Functions
 * Variables
@@ -56,29 +127,25 @@ Conceptos Básicos
 * Error handling
 * Code optimization
 
-Programación Orientada a Objetos (POO)
-=================
+**Programación Orientada a Objetos (POO)**
 * Prototipos
 * Constructores
 * hasOwnProperty, porpertyIsEnumerable
 * Call, Apply
 
-Programación funcional
-=================
+**Programación funcional**
 * Modularidad
 * Callbacks
 * Event Driven Design
 
-Patrones de código en JS
-=================
+**Patrones de código en JS**
 * Namespace
 * Init-time branching
 * Lazy definition
 * Module
 * Revealing Module
 
-Patrones de diseño en JS
-=================
+**Patrones de diseño en JS**
 * Prototype
 * Decorator
 * Singleton
@@ -90,15 +157,13 @@ Patrones de diseño en JS
 * Observer
 * Chain of Responsability
 
-MVC con Backbone.js
-=================
+**MVC con Backbone.js**
 * Single Page Apps
 * Models
 * Views
 * Collections
 
-HTML5 API
-=================
+**HTML5 API**
 * Selectors
 * Geolocalización
 * LocalStorage
@@ -107,15 +172,13 @@ HTML5 API
 * History
 * WebSockets
 
-AJAX
-=================
+**AJAX**
 * HTTP
 * JSON
 * JSONP
 * CORS
 
-Herramientas
-=================
+**Herramientas**
 * Git & github
 * [Cloud 9](https://c9.io/ulisesgascon)
 * [Firebase](https://www.firebase.com/)
